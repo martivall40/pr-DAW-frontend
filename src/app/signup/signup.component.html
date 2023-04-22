@@ -33,11 +33,12 @@
                     </mat-error>
                   <mat-icon matSuffix>lock</mat-icon>
                 </mat-form-field>
+                <mat-progress-spinner *ngIf="loading"></mat-progress-spinner>
                 <button
                   mat-raised-button
                   color="primary"
                   class="login-button"
-                  [disabled]="!login.valid">
+                  [disabled]="!login.valid && !loading">
                   Entrar
                 </button>
   
@@ -97,7 +98,6 @@
                   placeholder="Password"
                   type="password"
                   [errorStateMatcher]="passwordMatcher">
-                  <!-- <mat-error *ngIf="signup.errors?.['noMatch']">Contrasenyes no coincideixen</mat-error> -->
                   <mat-error
                     *ngIf="signup.controls.password.errors?.['required']">
                       Contrasenya obligatoria
@@ -108,11 +108,12 @@
                     </mat-error>
                 <mat-icon matSuffix>lock</mat-icon>
               </mat-form-field>
-              <button
+                <mat-progress-spinner *ngIf="loading"></mat-progress-spinner>
+                <button
                 mat-raised-button
                 color="primary"
                 class="login-button"
-                [disabled]="!signup.valid">
+                [disabled]="!signup.valid && !loading">
                 Registrar
               </button>
             </form>

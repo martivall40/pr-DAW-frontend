@@ -4,6 +4,9 @@ import { _AbstractConstructor } from '@angular/material/core';
 
 import { ErrorStateMatcher } from '@angular/material/core';
 
+import { AuthService } from 'src/app/auth/auth.service';
+
+
 // arreglar funcionament mat-error
 class FormStateMatcher implements ErrorStateMatcher {
   private errorCode: string;
@@ -26,10 +29,11 @@ export class SignupComponent implements OnInit {
 
   login:any;
   signup:any;
+  loading:boolean = false
   readonly passwordMatcher = new FormStateMatcher('passwordMatcher');
   
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
     this.login = new FormGroup({
@@ -65,6 +69,9 @@ export class SignupComponent implements OnInit {
     console.log("Login");
     if(this.login.valid){
       console.log(this.login.value)
+      this.loading = true
+      this.authService.login(this.signup.value.email, this.signup.value.password)
+      this.loading = false
     }
   }
 
@@ -72,7 +79,10 @@ export class SignupComponent implements OnInit {
     console.log("register");
     if(this.signup.valid){
       console.log(this.signup.value)
-    }
+      this.loading = true
+      this.authService.createUser(this.signup.value.username, this.signup.value.email, this.signup.value.password)
+      this.loading = false
+  }
   }
 
   private checkPasswords(group: AbstractControl): ValidationErrors | null {
