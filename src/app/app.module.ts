@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core'; 
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -32,6 +35,7 @@ import { SignupComponent } from './signup/signup.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
 
     MatToolbarModule,
     MatIconModule,
@@ -46,7 +50,7 @@ import { SignupComponent } from './signup/signup.component';
 
 
   ],
-  providers: [],
+  providers: [{ provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

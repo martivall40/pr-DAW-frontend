@@ -1,128 +1,119 @@
 <section class="login-page">
     <mat-card class="mat-elevation-z12">
-      <mat-card-title style="text-align:center;">SignIn/SignUp</mat-card-title>
+      <mat-card-title style="text-align:center;">Entrar/Registrar</mat-card-title>
       <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
-        <mat-tab label="Sign In">
+        <mat-tab label="Entrar">
             <mat-card-content>
-              <form action="">
+              <form [formGroup]="login" (submit)="onLogin()">
                 <mat-form-field>
-                  <input
+                <mat-label>Email</mat-label>
+                <input
                     matInput
-                    placeholder="Email"
-                    required
-                    name="email"
-                    ngModel
-                    #email="ngModel">
-                    <mat-error *ngIf="email.invalid">Email is required</mat-error>
+                    formControlName="email"
+                    placeholder="exemple@gmail.com"
+                    type="email">
+                    <mat-error *ngIf="login.controls.email.errors?.['required']">Correu obligatori</mat-error>
+                    <mat-error *ngIf="login.controls.email.errors">Correu incorrecte</mat-error>
                   <mat-icon matSuffix>email</mat-icon>
                 </mat-form-field>
                 <mat-form-field>
-                  <input
+                <mat-label>Password</mat-label>
+                <input
                     matInput
+                    formControlName="password"
                     placeholder="Password"
-                    type="password"
-                    required
-                    minlength="6"
-                    name="password"
-                    ngModel
-                    #password="ngModel">
+                    type="password">
                     <mat-error
-                      *ngIf="password.errors && password.errors required">
-                      Password is required
+                      *ngIf="login.controls.password.errors?.['required']">
+                      contrasenya obligatoria
                     </mat-error>
                     <mat-error
-                      *ngIf="password.errors && password.errors minlength">
-                      Password must be of length 6
+                      *ngIf="login.controls.password.errors?.['minlength']">
+                      Mínim 6 caràcters
                     </mat-error>
                   <mat-icon matSuffix>lock</mat-icon>
                 </mat-form-field>
-                <mat-checkbox>Remember Me!</mat-checkbox>
                 <button
                   mat-raised-button
                   color="primary"
-                  class="login-button">
-                  Sign In
+                  class="login-button"
+                  [disabled]="!login.valid">
+                  Entrar
                 </button>
   
-                <button
-                  mat-raised-button
-                  class="login-button">
-                  Login with Google
-                </button>
+
               </form>
             </mat-card-content>
         </mat-tab>
-        <mat-tab label="Sign Up">
+        <mat-tab label="Registrar">
           <mat-card-content>
-            <form action="">
+            <form [formGroup]="signup" (submit)="onSignup()">
               <mat-form-field>
+                <mat-label>Nom</mat-label>
                 <input
                   matInput
-                  placeholder="User Name"
-                  required
-                  name="username"
-                  ngModel
-                  #username="ngModel">
+                  formControlName="username">
                 <mat-icon matSuffix>perm_identity</mat-icon>
                 <mat-error
-                  *ngIf="username.invalid">
-                  Username is required
+                  *ngIf="signup.controls.username.errors?.['required']">
+                  Nom obligatori
                 </mat-error>
   
               </mat-form-field>
               <mat-form-field>
+                <mat-label>email</mat-label>
                 <input
                   matInput
-                  placeholder="Email"
-                  required
-                  name="email"
-                  ngModel
-                  #email="ngModel">
-                  <mat-error *ngIf="email.invalid">Email is required</mat-error>
+                  formControlName="email"
+                  placeholder="exemple@gmail.com">
+                  <mat-error *ngIf="signup.controls.email.errors?.['required']">Correu obligatori</mat-error>
+                  <mat-error *ngIf="signup.controls.email.errors">Correu incorrecte</mat-error>
                 <mat-icon matSuffix>email</mat-icon>
               </mat-form-field>
               <mat-form-field>
+                <mat-label>Password</mat-label>
                 <input
                   matInput
+                  formControlName="password"
                   placeholder="Password"
-                  type="password"
-                  required
-                  minlength="6"
-                  name="password"
-                  ngModel
-                  #password="ngModel">
+                  type="password">
                   <mat-error
-                    *ngIf="password.errors && password.errors required">
-                    Password is required
+                    *ngIf="signup.controls.password.errors?.['required']">
+                    Contrasenya obligatoria
                   </mat-error>
                   <mat-error
-                    *ngIf="password.errors && password.errors minlength">
-                    Password must be of length 6
+                    *ngIf="signup.controls.password.errors?.['minlength']">
+                    Mínim 6 caràcters
                   </mat-error>
                 <mat-icon matSuffix>lock</mat-icon>
   
               </mat-form-field>
+
               <mat-form-field>
+                <mat-label>Password</mat-label>
                   <input
                   matInput
+                  formControlName="confirmPassword"
                   placeholder="Password"
                   type="password"
-                  required
-                  minlength="6"
-                  name="repassword"
-                  ngModel
-                  #repassword="ngModel">
+                  [errorStateMatcher]="passwordMatcher">
+                  <!-- <mat-error *ngIf="signup.errors?.['noMatch']">Contrasenyes no coincideixen</mat-error> -->
                   <mat-error
-                    *ngIf="repassword.errors && repassword.errors required">
-                    Re-Enter Password is required
-                  </mat-error>
+                    *ngIf="signup.controls.password.errors?.['required']">
+                      Contrasenya obligatoria
+                    </mat-error>
+                  <mat-error
+                    *ngIf="signup.hasError('passwordMatcher')">
+                      Contrasenyes no coincideixen
+                    </mat-error>
                 <mat-icon matSuffix>lock</mat-icon>
               </mat-form-field>
               <button
                 mat-raised-button
                 color="primary"
-                class="login-button">
-                Sign Up
+                class="login-button"
+                [disabled]="!signup.valid">
+                Registrar
               </button>
             </form>
           </mat-card-content>

@@ -13,10 +13,23 @@
   }
   
   mat-card {
-    width: 30%;
-    margin: 10% auto;
+    width: 33vw;
+    margin: 5% auto;
     border-radius: 8px;
   }
+
+  @media only screen and (max-width: 1000px) {
+    mat-card {
+      width: 45vw;
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    mat-card {
+      width: 65vw;
+    }
+  }
+
   mat-form-field, mat-checkbox {
     width: 80%;
     display: block;
