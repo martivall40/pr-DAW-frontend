@@ -4,7 +4,8 @@
       <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
         <mat-tab label="Entrar">
             <mat-card-content>
-              <form [formGroup]="login" (submit)="onLogin()">
+              <mat-spinner style="margin:0 auto;"  *ngIf="loading"></mat-spinner>
+              <form *ngIf="!loading" [formGroup]="login" (submit)="onLogin()">
                 <mat-form-field>
                 <mat-label>Email</mat-label>
                 <input
@@ -33,12 +34,12 @@
                     </mat-error>
                   <mat-icon matSuffix>lock</mat-icon>
                 </mat-form-field>
-                <mat-progress-spinner *ngIf="loading"></mat-progress-spinner>
+                <mat-spinner *ngIf="loading"></mat-spinner>
                 <button
                   mat-raised-button
                   color="primary"
                   class="login-button"
-                  [disabled]="!login.valid && !loading">
+                  [disabled]="!login.valid || loading">
                   Entrar
                 </button>
   
@@ -48,7 +49,8 @@
         </mat-tab>
         <mat-tab label="Registrar">
           <mat-card-content>
-            <form [formGroup]="signup" (submit)="onSignup()">
+            <mat-spinner style="margin:0 auto;"  *ngIf="loading"></mat-spinner>
+            <form  *ngIf="!loading" [formGroup]="signup" (submit)="onSignup()">
               <mat-form-field>
                 <mat-label>Nom</mat-label>
                 <input
@@ -108,12 +110,11 @@
                     </mat-error>
                 <mat-icon matSuffix>lock</mat-icon>
               </mat-form-field>
-                <mat-progress-spinner *ngIf="loading"></mat-progress-spinner>
                 <button
                 mat-raised-button
                 color="primary"
                 class="login-button"
-                [disabled]="!signup.valid && !loading">
+                [disabled]="!signup.valid || loading">
                 Registrar
               </button>
             </form>

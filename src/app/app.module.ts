@@ -16,6 +16,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,7 +54,8 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-
+    MatSnackBarModule,
+    
     HttpClientModule,
 
   ],

@@ -1,4 +1,4 @@
-import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy,ChangeDetectorRef } from '@angular/core';
 import { FormControl,FormGroup,Validators,ValidatorFn, AbstractControl,ValidationErrors,NgForm,FormGroupDirective } from '@angular/forms';
 import { _AbstractConstructor } from '@angular/material/core';
 
@@ -6,8 +6,9 @@ import { ErrorStateMatcher } from '@angular/material/core';
 
 import { AuthService } from 'src/app/auth/auth.service';
 
+import { MatSnackBar} from '@angular/material/snack-bar';
 
-// arreglar funcionament mat-error
+// arreglar funcionament mat-error (linkejar error en el camp)
 class FormStateMatcher implements ErrorStateMatcher {
   private errorCode: string;
   constructor(errorCode: string) {
@@ -29,13 +30,13 @@ export class SignupComponent implements OnInit {
 
   login:any;
   signup:any;
-  loading:boolean = false
+  public loading:boolean = false
   readonly passwordMatcher = new FormStateMatcher('passwordMatcher');
-  
 
-  constructor(public authService: AuthService) { }
+  constructor(private _snackBar: MatSnackBar,private cdRef:ChangeDetectorRef,public authService: AuthService) { }
 
   ngOnInit() {
+    // Formolaris amb validacions login/signup
     this.login = new FormGroup({
       email: new FormControl('',[
         Validators.required,
@@ -71,6 +72,7 @@ export class SignupComponent implements OnInit {
       console.log(this.login.value)
       this.loading = true
       this.authService.login(this.signup.value.email, this.signup.value.password)
+      
       this.loading = false
     }
   }
@@ -80,9 +82,46 @@ export class SignupComponent implements OnInit {
     if(this.signup.valid){
       console.log(this.signup.value)
       this.loading = true
-      this.authService.createUser(this.signup.value.username, this.signup.value.email, this.signup.value.password)
-      this.loading = false
-  }
+      this.authService.createUser(this.signup.value.username, this.signup.value.email, this.signup.value.password).subscribe({
+        next: (res)=>{
+          this.loading = false
+          console.log(res)
+
+          // solucionar problemes actualitzar var ngIf
+          this.cdRef.detectChanges();
+
+          let msg = "Usuari creat correctament"
+
+          this._snackBar.open(msg, 'X', {
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+            duration: 5 * 1000,
+          });
+        },
+        error: (error)=>{
+          let msg = "ha hagut un problema"
+          this.loading = false
+          console.log(error)
+          this.cdRef.detectChanges();
+
+          if (error.status == 0){
+            msg = "Ha hagut un problema al connectar amb el servidor"
+          }else if (error.status == 401){
+            msg = "Problema amb les credencial"
+          }else if (error.status == 500){
+            msg = "Problema en crear usuari"
+          }
+          
+          this._snackBar.open(msg, 'X', {
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+            duration: 5 * 1000,
+          });
+          
+        },
+      })
+
+    }
   }
 
   private checkPasswords(group: AbstractControl): ValidationErrors | null {
