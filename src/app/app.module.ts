@@ -26,11 +26,15 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { HomeComponent } from './components/home/home.component';
+import { PriceComponent } from './components/home/price/price.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
+    HomeComponent,
+    PriceComponent,
   ],
   imports: [
     BrowserModule,

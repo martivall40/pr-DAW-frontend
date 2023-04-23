@@ -76,11 +76,11 @@ export class SignupComponent implements OnInit {
   onLogin() {
     console.log("Login");
     if(this.login.valid){
-      console.log(this.login.value)
+      // console.log(this.login.value)
       this.loading = true
       this.authService.login(this.login.value.email, this.login.value.password).subscribe({
         next: (response:any) => {
-          console.log(response)
+          // console.log(response)
           const token = response.token
           this.authService.token = token
           if (token) {
@@ -139,12 +139,12 @@ export class SignupComponent implements OnInit {
   onSignup() {
     console.log("register");
     if(this.signup.valid){
-      console.log(this.signup.value)
+      // console.log(this.signup.value)
       this.loading = true
       this.authService.createUser(this.signup.value.username, this.signup.value.email, this.signup.value.password).subscribe({
         next: (res)=>{
           this.loading = false
-          console.log(res)
+          // console.log(res)
 
           // solucionar problemes actualitzar var ngIf
           this.cdRef.detectChanges();
