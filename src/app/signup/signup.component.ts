@@ -1,4 +1,5 @@
 import { Component, OnInit,ChangeDetectionStrategy,ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormControl,FormGroup,Validators,ValidatorFn, AbstractControl,ValidationErrors,NgForm,FormGroupDirective } from '@angular/forms';
 import { _AbstractConstructor } from '@angular/material/core';
 
@@ -30,10 +31,16 @@ export class SignupComponent implements OnInit {
 
   login:any;
   signup:any;
+  public tabNum:number = 0;
   public loading:boolean = false
   readonly passwordMatcher = new FormStateMatcher('passwordMatcher');
 
-  constructor(private _snackBar: MatSnackBar,private cdRef:ChangeDetectorRef,public authService: AuthService) { }
+  constructor(
+      private _snackBar: MatSnackBar,
+      private cdRef:ChangeDetectorRef,
+      public authService: AuthService,
+      private _router:Router
+    ) { }
 
   ngOnInit() {
     // Formolaris amb validacions login/signup
@@ -71,9 +78,61 @@ export class SignupComponent implements OnInit {
     if(this.login.valid){
       console.log(this.login.value)
       this.loading = true
-      this.authService.login(this.signup.value.email, this.signup.value.password)
+      this.authService.login(this.login.value.email, this.login.value.password).subscribe({
+        next: (response:any) => {
+          console.log(response)
+          const token = response.token
+          this.authService.token = token
+          if (token) {
+              const expiresInDuration = response.expiresIn;
+              this.authService.setAuthTimer(expiresInDuration);
+              this.authService.isAuthenticated = true;
+              this.authService.authStatusListener.next(true);
+              const now = new Date();
+              const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
+              console.log(expirationDate);
+              this.authService.saveAuthData(token, expirationDate);
+              this._router.navigate(["/"]);
+
+              let msg = "Usuari loguejat correctament"
+
+              this._snackBar.open(msg, 'X', {
+                horizontalPosition: 'right',
+                verticalPosition: 'top',
+                duration: 5 * 1000,
+                panelClass: ['success-snackbar']
+                
+              });
+
+              this.loading = false
+              this.cdRef.detectChanges();
+          }
+        },
+        error: (error:any) => {
+          console.log(error);
+          this.loading = false
+          this.cdRef.detectChanges();
+
+          let msg = "ha hagut un problema"
+        
+          if (error.status == 0){
+            msg = "Ha hagut un problema al connectar amb el servidor"
+          }else if (error.status == 401){
+            msg = "Error amb les credencials"
+          }else if (error.status == 500){
+            msg = "Problema en loguejar usuari"
+          }
+          
+          this._snackBar.open(msg, 'X', {
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+            duration: 10 * 1000,
+            panelClass: ['error-snackbar']
+          });
+        }
+
+      })
       
-      this.loading = false
     }
   }
 
@@ -95,8 +154,15 @@ export class SignupComponent implements OnInit {
           this._snackBar.open(msg, 'X', {
             horizontalPosition: 'right',
             verticalPosition: 'top',
-            duration: 5 * 1000,
+            duration: 10 * 1000,
+            panelClass: ['success-snackbar']
+            
           });
+
+          this.tabNum = 0
+
+          // this._router.navigateByUrl('signup');
+          // this._router.navigate(["/signup"]);
         },
         error: (error)=>{
           let msg = "ha hagut un problema"
@@ -107,7 +173,7 @@ export class SignupComponent implements OnInit {
           if (error.status == 0){
             msg = "Ha hagut un problema al connectar amb el servidor"
           }else if (error.status == 401){
-            msg = "Problema amb les credencial"
+            msg = "Aquest email no està disponible"
           }else if (error.status == 500){
             msg = "Problema en crear usuari"
           }
@@ -115,7 +181,8 @@ export class SignupComponent implements OnInit {
           this._snackBar.open(msg, 'X', {
             horizontalPosition: 'right',
             verticalPosition: 'top',
-            duration: 5 * 1000,
+            duration: 10 * 1000,
+            panelClass: ['error-snackbar']
           });
           
         },

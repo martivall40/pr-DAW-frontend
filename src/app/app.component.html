@@ -7,9 +7,9 @@
         <a mat-button [routerLink]="['/test']" [routerLinkActive]="['active']" > test </a>
         <a mat-button [routerLink]="['/signup']" [routerLinkActive]="['active']" > signup </a>
         <!-- <a *ngIf="!userIsAuthenticated" routerLink="/login">Login</a>
-        <a *ngIf="!userIsAuthenticated" routerLink="/signup">Signup</a>
-        <button *ngIf="userIsAuthenticated" (click)="onLogout()">Logout</button> -->
-  
+        <a *ngIf="!userIsAuthenticated" routerLink="/signup">Signup</a>-->
+        <button mat-button *ngIf="userIsAuthenticated" (click)="onLogout()">Logout</button>
+
         <button mat-icon-button class="icon favorite-icon" aria-label="Example icon-button with heart icon">
             <mat-icon>favorite</mat-icon>
         </button>

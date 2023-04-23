@@ -1,7 +1,7 @@
 <section class="login-page">
     <mat-card class="mat-elevation-z12">
       <mat-card-title style="text-align:center;">Entrar/Registrar</mat-card-title>
-      <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+      <mat-tab-group mat-stretch-tabs [(selectedIndex)]="tabNum" class="example-stretched-tabs">
         <mat-tab label="Entrar">
             <mat-card-content>
               <mat-spinner style="margin:0 auto;"  *ngIf="loading"></mat-spinner>

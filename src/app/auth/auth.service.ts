@@ -13,12 +13,15 @@ import { environment } from "../environments/environment"
 export class AuthService {
   host = environment.host
 
-    private isAuthenticated = false
-    private token: string = ''
+    public isAuthenticated = false
+    public token: string = ''
     private tokenTimer:any
-    private authStatusListener = new Subject<boolean>()
+    public authStatusListener = new Subject<boolean>()
 
-    constructor(private http: HttpClient, private router: Router){}
+    constructor(
+      private http: HttpClient, 
+      private router: Router,
+      ){}
 
 
 
@@ -45,29 +48,15 @@ export class AuthService {
     }
 
 
-    // loguejat usuari
-    login(email: string, password: string){
+    // loguejar usuari
+    login(email: string, password: string):Observable<any>{
       const authData = { email: email, password: password };
-        this.http
+      return this.http
         .post<{ token: string; expiresIn: number }>(
             this.host+"/api/user/login",
             authData
         )
-        .subscribe(response => {
-            const token = response.token
-            this.token = token
-            if (token) {
-                const expiresInDuration = response.expiresIn;
-                this.setAuthTimer(expiresInDuration);
-                this.isAuthenticated = true;
-                this.authStatusListener.next(true);
-                const now = new Date();
-                const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-                console.log(expirationDate);
-                this.saveAuthData(token, expirationDate);
-                this.router.navigate(["/"]);
-            }
-        })
+        
     }
 
 
@@ -93,17 +82,17 @@ export class AuthService {
         this.authStatusListener.next(false);
         clearTimeout(this.tokenTimer);
         this.clearAuthData();
-        this.router.navigate(["/"]);
+        this.router.navigate(["/signup"]);
       }
     
-      private setAuthTimer(duration: number) {
+      public setAuthTimer(duration: number) {
         console.log("Setting timer: " + duration);
         this.tokenTimer = setTimeout(() => {
           this.logout();
         }, duration * 1000);
       }
     
-      private saveAuthData(token: string, expirationDate: Date) {
+      public saveAuthData(token: string, expirationDate: Date) {
         localStorage.setItem("token", token);
         localStorage.setItem("expiration", expirationDate.toISOString());
       }
