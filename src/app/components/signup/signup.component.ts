@@ -78,34 +78,28 @@ export class SignupComponent implements OnInit {
     if(this.login.valid){
       // console.log(this.login.value)
       this.loading = true
-      this.authService.login(this.login.value.email, this.login.value.password).subscribe({
+      this.authService.loginCall(this.login.value.email, this.login.value.password).subscribe({
         next: (response:any) => {
           // console.log(response)
           const token = response.token
-          this.authService.token = token
           if (token) {
-              const expiresInDuration = response.expiresIn;
-              this.authService.setAuthTimer(expiresInDuration);
-              this.authService.isAuthenticated = true;
-              this.authService.authStatusListener.next(true);
-              const now = new Date();
-              const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-              console.log(expirationDate);
-              this.authService.saveAuthData(token, expirationDate);
-              this._router.navigate(["/"]);
+            this.authService.setToken(token)
+            this.authService.login(response)
 
-              let msg = "Usuari loguejat correctament"
+            
 
-              this._snackBar.open(msg, 'X', {
-                horizontalPosition: 'right',
-                verticalPosition: 'top',
-                duration: 5 * 1000,
-                panelClass: ['success-snackbar']
-                
-              });
+            let msg = "Usuari loguejat correctament"
 
-              this.loading = false
-              this.cdRef.detectChanges();
+            this._snackBar.open(msg, 'X', {
+              horizontalPosition: 'right',
+              verticalPosition: 'top',
+              duration: 5 * 1000,
+              panelClass: ['success-snackbar']
+              
+            });
+
+            this.loading = false
+            this.cdRef.detectChanges();
           }
         },
         error: (error:any) => {

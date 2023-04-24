@@ -13,10 +13,10 @@ import { environment } from "../environments/environment"
 export class AuthService {
   host = environment.host
 
-    public isAuthenticated = false
-    public token: string = ''
+    private isAuthenticated = false
+    private token: string = ''
     private tokenTimer:any
-    public authStatusListener = new Subject<boolean>()
+    private authStatusListener = new Subject<boolean>()
 
     constructor(
       private http: HttpClient, 
@@ -28,6 +28,10 @@ export class AuthService {
     getToken() {
         return this.token;
     }
+
+    setToken(token:string) {
+      this.token = token;
+  }
 
     getIsAuth() {
         return this.isAuthenticated;
@@ -49,7 +53,7 @@ export class AuthService {
 
 
     // loguejar usuari
-    login(email: string, password: string):Observable<any>{
+    loginCall(email: string, password: string):Observable<any>{
       const authData = { email: email, password: password };
       return this.http
         .post<{ token: string; expiresIn: number }>(
@@ -57,6 +61,18 @@ export class AuthService {
             authData
         )
         
+    }
+
+    login(response:any){
+      const expiresInDuration = response.expiresIn;
+      this.setAuthTimer(expiresInDuration);
+      this.isAuthenticated = true;
+      this.authStatusListener.next(true);
+      const now = new Date();
+      const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
+      console.log(expirationDate);
+      this.saveAuthData(this.token, expirationDate);
+      this.router.navigate(["/"]);
     }
 
 
@@ -85,14 +101,14 @@ export class AuthService {
         this.router.navigate(["/signup"]);
       }
     
-      public setAuthTimer(duration: number) {
+      private setAuthTimer(duration: number) {
         console.log("Setting timer: " + duration);
         this.tokenTimer = setTimeout(() => {
           this.logout();
         }, duration * 1000);
       }
     
-      public saveAuthData(token: string, expirationDate: Date) {
+      private saveAuthData(token: string, expirationDate: Date) {
         localStorage.setItem("token", token);
         localStorage.setItem("expiration", expirationDate.toISOString());
       }
