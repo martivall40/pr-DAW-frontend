@@ -107,7 +107,7 @@ export class SignupComponent implements OnInit {
           this.loading = false
           this.cdRef.detectChanges();
 
-          let msg = "ha hagut un problema"
+          let msg = "Hi ha hagut un problema"
         
           if (error.status == 0){
             msg = "No s'ha pogut connectar amb el servidor"
@@ -159,7 +159,7 @@ export class SignupComponent implements OnInit {
           // this._router.navigate(["/signup"]);
         },
         error: (error)=>{
-          let msg = "ha hagut un problema"
+          let msg = "Hi ha hagut un problema"
           this.loading = false
           console.log(error)
           this.cdRef.detectChanges();
