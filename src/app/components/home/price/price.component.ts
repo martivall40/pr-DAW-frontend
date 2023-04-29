@@ -36,7 +36,7 @@ export class PriceComponent {
         let msg = "ha hagut un problema"
 
         if (error.status == 0){
-          msg = "Ha hagut un problema al connectar amb el servidor"
+          msg = "No s'ha pogut connectar amb el servidor"
         }
         
         this._snackBar.open(msg, 'X', {

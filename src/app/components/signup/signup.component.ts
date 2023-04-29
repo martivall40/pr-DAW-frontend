@@ -110,7 +110,7 @@ export class SignupComponent implements OnInit {
           let msg = "ha hagut un problema"
         
           if (error.status == 0){
-            msg = "Ha hagut un problema al connectar amb el servidor"
+            msg = "No s'ha pogut connectar amb el servidor"
           }else if (error.status == 401){
             msg = "Error amb les credencials"
           }else if (error.status == 500){
@@ -165,7 +165,7 @@ export class SignupComponent implements OnInit {
           this.cdRef.detectChanges();
 
           if (error.status == 0){
-            msg = "Ha hagut un problema al connectar amb el servidor"
+            msg = "No s'ha pogut connectar amb el servidor"
           }else if (error.status == 401){
             msg = "Aquest email no està disponible"
           }else if (error.status == 500){
