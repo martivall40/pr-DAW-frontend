@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Price } from 'src/app/models/price';
 import { PriceService } from 'src/app/services/price.service';
 import { MatSnackBar} from '@angular/material/snack-bar';
+import { ImgDialogComponent } from '../../shared-components/dialog/img-dialog/img-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-price',
@@ -14,6 +16,7 @@ export class PriceComponent {
   constructor(
     private _priceService:PriceService,
     private _snackBar: MatSnackBar,
+    public dialog: MatDialog,
 
   ){}
 
@@ -44,5 +47,13 @@ export class PriceComponent {
         });
       },
     })
+  }
+
+  openDialog(image:string){
+    // this.dialog.open(ImgDialogComponent, { data: { image } })
+
+    const dialogRef = this.dialog.open(ImgDialogComponent, {
+      data: { image },
+    });
   }
 }

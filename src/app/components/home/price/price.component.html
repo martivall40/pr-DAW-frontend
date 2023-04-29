@@ -6,16 +6,15 @@
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>Preu electricitat tarifa PVPC</mat-card-title>
+    <mat-card-actions style="margin:0 auto;">
+      <button mat-button>Veure'n més</button>
+    </mat-card-actions>
     <mat-card-subtitle>{{price.date | date:'dd-MM-yyyy'}}</mat-card-subtitle>
   </mat-card-header>
     <mat-divider></mat-divider>
-    <img mat-card-image src="{{price.link}}" class='graph' alt="Ellectricity graph">
+    <img mat-card-image src="{{price.link}}" (click)="openDialog(price.link)" class='graph' alt="Ellectricity graph">
   <mat-card-content>
 
   </mat-card-content>
-  <mat-card-actions style="margin:0 auto;">
-    <button mat-button>ampliar</button>
-    <button mat-button>veure mes detall</button>
-    <button mat-button>veure'n més</button>
-  </mat-card-actions>
+
 </mat-card>

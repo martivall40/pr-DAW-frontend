@@ -17,6 +17,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCommonModule } from '@angular/material/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +30,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { HomeComponent } from './components/home/home.component';
 import { PriceComponent } from './components/home/price/price.component';
+import { ImgDialogComponent } from './components/shared-components/dialog/img-dialog/img-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ import { PriceComponent } from './components/home/price/price.component';
     SignupComponent,
     HomeComponent,
     PriceComponent,
+    ImgDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,10 +59,13 @@ import { PriceComponent } from './components/home/price/price.component';
     MatInputModule,
     MatCheckboxModule,
     MatSnackBarModule,
+    MatDialogModule,
+    MatCommonModule,
     
     HttpClientModule,
 
   ],
+  entryComponents: [ImgDialogComponent],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher, },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
