@@ -1,1 +1,78 @@
 <app-price></app-price>
+
+<mat-grid-list [cols]="breakpoint" rowHeight="315px" gutterSize="15px" (window:resize)="onResize($event)">
+  <mat-grid-tile>
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>Veure ubicacions</mat-card-title>
+        <mat-card-actions align="end">
+          <button mat-button>Veure'n més</button>
+        </mat-card-actions>
+      </mat-card-header>
+        <mat-divider></mat-divider>
+        
+      <mat-card-content>
+        <p>Veure ubicacions</p>
+      </mat-card-content>
+    
+    </mat-card>
+  </mat-grid-tile>
+  
+  <mat-grid-tile>
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>Veure tots els aparells</mat-card-title>
+        <mat-card-actions style="margin:0 auto;">
+          <button mat-button>Veure'n més</button>
+        </mat-card-actions>
+      </mat-card-header>
+        <mat-divider></mat-divider>
+        
+      <mat-card-content>
+        <p>Veure tots els aparells</p>
+      </mat-card-content>
+    
+    </mat-card>
+  </mat-grid-tile>
+
+  
+  <mat-grid-tile>
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>Registra d'activitats (logs)</mat-card-title>
+        <mat-card-actions style="margin:0 auto;">
+          <button mat-button>Veure'n més</button>
+        </mat-card-actions>
+      </mat-card-header>
+        <mat-divider></mat-divider>
+        
+      <mat-card-content>
+        <p>Registra d'activitats (logs)</p>
+      </mat-card-content>
+    
+    </mat-card>
+  </mat-grid-tile>
+  
+  <mat-grid-tile>
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>Registres del preu de l'electricitat</mat-card-title>
+        <mat-card-actions style="margin:0 auto;">
+          <button mat-button>Veure'n més</button>
+        </mat-card-actions>
+      </mat-card-header>
+        <mat-divider></mat-divider>
+        
+      <mat-card-content>
+        <p>Registres del preu de l'electricitat</p>
+      </mat-card-content>
+    
+    </mat-card>
+  </mat-grid-tile>
+
+
+</mat-grid-list>

@@ -30,10 +30,16 @@ h1.app-name {
   flex: 1 0 auto;
 }
 
+mat-icon{
+  vertical-align: text-bottom;
+}
+
 
 mat-sidenav {
   min-width: 15vw;
 }
+
+
 
 @media only screen and (max-width: 600px) {
   mat-sidenav {

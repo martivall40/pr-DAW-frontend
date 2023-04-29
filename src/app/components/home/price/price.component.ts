@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Price } from 'src/app/models/price';
 import { PriceService } from 'src/app/services/price.service';
 import { MatSnackBar} from '@angular/material/snack-bar';
@@ -10,7 +10,7 @@ import {MatDialog} from '@angular/material/dialog';
   templateUrl: './price.component.html',
   styleUrls: ['./price.component.scss']
 })
-export class PriceComponent {
+export class PriceComponent implements OnInit {
   public price:Price | null = null
 
   constructor(
