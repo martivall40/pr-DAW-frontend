@@ -1,6 +1,6 @@
 <app-price></app-price>
 
-<mat-grid-list [cols]="breakpoint" rowHeight="315px" gutterSize="15px" (window:resize)="onResize($event)">
+<mat-grid-list (click)="onClick('/place')" [cols]="breakpoint" rowHeight="315px" gutterSize="15px" (window:resize)="onResize($event)">
   <mat-grid-tile>
     <mat-card class="card">
       <mat-card-header>

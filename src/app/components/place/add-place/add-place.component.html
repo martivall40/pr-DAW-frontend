@@ -1,0 +1,46 @@
+<mat-card class="card">
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title>Afegir ubicació</mat-card-title>
+    
+  </mat-card-header>
+    <mat-divider></mat-divider>
+  <mat-card-content>
+      <mat-spinner *ngIf="loading"></mat-spinner>
+      <form *ngIf="!loading"  [formGroup]="place" (submit)="onAdd()">
+      <mat-form-field>
+      <mat-label>Nom</mat-label>
+      <input
+          matInput
+          formControlName="name">
+          <mat-error *ngIf="place.controls.name.errors?.['required']">Nom obligatori</mat-error>
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select ><!-- [(value)]="selected" [ngClass]="selected" -->
+          <mat-option>None</mat-option>
+          <mat-option value="option1">Option 1
+            <img with="10" height="10" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg">
+      
+          </mat-option>      
+          <mat-option value="option2">Option 2
+            <img with="10" height="10" src="https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg">
+      
+          </mat-option>
+      
+          <mat-option value="option3">Option 3</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        class="place-button"
+        [disabled]="!place.valid || loading">
+        Afegir
+      </button>
+
+
+    </form>
+  </mat-card-content>
+
+</mat-card>

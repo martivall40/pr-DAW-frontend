@@ -18,6 +18,8 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 import { HomeComponent } from './components/home/home.component';
 import { PriceComponent } from './components/home/price/price.component';
 import { ImgDialogComponent } from './components/shared-components/dialog/img-dialog/img-dialog.component';
+import { PlaceComponent } from './components/place/place.component';
+import { AddPlaceComponent } from './components/place/add-place/add-place.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { ImgDialogComponent } from './components/shared-components/dialog/img-di
     HomeComponent,
     PriceComponent,
     ImgDialogComponent,
+    PlaceComponent,
+    AddPlaceComponent,
   ],
   imports: [
     BrowserModule,

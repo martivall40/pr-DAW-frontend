@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import { Component,OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   breakpoint: number = 1
-  constructor() {}
+  constructor(private _router: Router,) {}
 
   ngOnInit() {
     // this.breakpoint = window.innerWidth <= 400 ? 1 : 6;
@@ -25,6 +26,11 @@ export class HomeComponent implements OnInit {
       this.breakpoint = 2;
     }
 
+  }
+
+  onClick(url:string){
+    this._router.navigate([url]);
+    
   }
 }
 
