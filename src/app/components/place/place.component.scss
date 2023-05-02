@@ -1,12 +1,12 @@
-.card {
+.mainCard {
   max-width: 90%;
   margin:15px auto;
 }
 
-.graph{
-  margin:0 auto;
-  width:60%;
-}
+// .graph{
+//   margin:0 auto;
+//   width:60%;
+// }
 
 .buto{
   // max-width: 90%;
@@ -18,4 +18,53 @@ mat-card-header{
   margin-bottom: 0;
   align-items: center;
   padding: 10px;
+}
+
+mat-grid-list{
+  max-width: 90%;
+  margin:15px auto;
+}
+
+mat-grid-tile{
+  cursor:pointer;
+}
+mat-grid-tile:hover{
+  cursor:pointer;
+  box-shadow: 3px 3px #888888;
+  border: 2px solid #888;
+}
+
+.childCard{
+  width:99%;
+  height:99%;
+}
+
+
+
+.ubicacions{
+  background: url("../../../assets/img/ubicacions.jpeg") no-repeat;
+  background-size: cover;
+  // width: 100%;
+  height: 100%;
+}
+
+.aparells{
+  background: url("../../../assets/img/aparells.png") no-repeat;
+  background-size: cover;
+  // width: 100%;
+  height: 100%;
+}
+
+.logs{
+  background: url("../../../assets/img/logs.png") no-repeat;
+  background-size: cover;
+  // width: 100%;
+  height: 100%;
+}
+
+.graph{
+  background: url("../../../assets/img/graph.jpg") no-repeat;
+  background-size: cover;
+  // width: 100%;
+  height: 100%;
 }

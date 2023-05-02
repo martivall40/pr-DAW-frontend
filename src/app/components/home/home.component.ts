@@ -11,7 +11,6 @@ export class HomeComponent implements OnInit {
   constructor(private _router: Router,) {}
 
   ngOnInit() {
-    // this.breakpoint = window.innerWidth <= 400 ? 1 : 6;
     this.onResize()
   }
 

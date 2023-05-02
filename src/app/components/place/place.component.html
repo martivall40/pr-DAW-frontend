@@ -1,4 +1,4 @@
-<mat-card class="card">
+<mat-card class="mainCard">
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>Ubicacions</mat-card-title>
@@ -11,9 +11,82 @@
 
 </mat-card>
 
+<mat-grid-list (click)="onClick('/place')" [cols]="breakpoint" rowHeight="315px" gutterSize="15px" (window:resize)="onResize($event)">
+  <mat-grid-tile>
+    <mat-card class="childCard">
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>Veure ubicacions</mat-card-title>
+        <!-- <mat-card-actions align="end">
+          <button mat-button>Veure'n més</button>
+        </mat-card-actions> -->
+      </mat-card-header>
+        <mat-divider></mat-divider>
+        
+      <mat-card-content class="ubicacions">
+
+      </mat-card-content>
+    
+    </mat-card>
+  </mat-grid-tile>
+  
+  <mat-grid-tile>
+    <mat-card class="childCard">
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>Veure tots els aparells</mat-card-title>
+        <!-- <mat-card-actions style="margin:0 auto;">
+          <button mat-button>Veure'n més</button>
+        </mat-card-actions> -->
+      </mat-card-header>
+        <mat-divider></mat-divider>
+        
+      <mat-card-content class="aparells">
+      </mat-card-content>
+    
+    </mat-card>
+  </mat-grid-tile>
+
+  
+  <mat-grid-tile>
+    <mat-card class="childCard">
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>Registra d'activitats (logs)</mat-card-title>
+        <!-- <mat-card-actions style="margin:0 auto;">
+          <button mat-button>Veure'n més</button>
+        </mat-card-actions> -->
+      </mat-card-header>
+        <mat-divider></mat-divider>
+        
+      <mat-card-content class="logs">
+      </mat-card-content>
+    
+    </mat-card>
+  </mat-grid-tile>
+  
+  <mat-grid-tile>
+    <mat-card class="childCard">
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>Registres del preu de l'electricitat</mat-card-title>
+        <!-- <mat-card-actions style="margin:0 auto;">
+          <button mat-button>Veure'n més</button>
+        </mat-card-actions> -->
+      </mat-card-header>
+        <mat-divider></mat-divider>
+        
+      <mat-card-content class="graph">
+      </mat-card-content>
+    
+    </mat-card>
+  </mat-grid-tile>
 
 
-<mat-card class="card">
-  <button (click)="addPlace()" mat-raised-button color="primary" class="buto">+ Afegir Ubicació</button>
+</mat-grid-list>
+
+
+<mat-card class="mainCard">
+  <button (click)="addPlace()" mat-raised-button color="primary" class="buto"><mat-icon>add</mat-icon> Afegir Ubicació</button>
 </mat-card>
 
