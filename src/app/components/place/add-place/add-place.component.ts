@@ -26,62 +26,62 @@ export class AddPlaceComponent implements OnInit {
     this.place = new FormGroup({
       name: new FormControl('',[
         Validators.required,
+      ]),
+      type: new FormControl('',[
+        Validators.required,
       ])
     });
   }
 
   onAdd() {
-    console.log("add");
-    // if(this.place.valid){
-    //   // console.log(this.signup.value)
-    //   this.loading = true
-    //   this.authService.createUser(this.signup.value.username, this.signup.value.email, this.signup.value.password).subscribe({
-    //     next: (res)=>{
-    //       this.loading = false
-    //       // console.log(res)
+    if(this.place.valid){
+      console.log(this.place.value)
+      this.loading = true
+      // this.authService.createUser(this.place.value.username, this.place.value.email, this.place.value.password).subscribe({
+      //   next: (res)=>{
+      //     this.loading = false
+      //     // console.log(res)
 
-    //       // solucionar problemes actualitzar var ngIf
-    //       this.cdRef.detectChanges();
+      //     // solucionar problemes actualitzar var ngIf
+      //     this.cdRef.detectChanges();
 
-    //       let msg = "Usuari creat correctament"
+      //     let msg = "Usuari creat correctament"
 
-    //       this._snackBar.open(msg, 'X', {
-    //         horizontalPosition: 'right',
-    //         verticalPosition: 'top',
-    //         duration: 10 * 1000,
-    //         panelClass: ['success-snackbar']
+      //     this._snackBar.open(msg, 'X', {
+      //       horizontalPosition: 'right',
+      //       verticalPosition: 'top',
+      //       duration: 10 * 1000,
+      //       panelClass: ['success-snackbar']
             
-    //       });
+      //     });
 
-    //       this.tabNum = 0
+      //     this.tabNum = 0
 
-    //       // this._router.navigateByUrl('signup');
-    //       // this._router.navigate(["/signup"]);
-    //     },
-    //     error: (error)=>{
-    //       let msg = "Hi ha hagut un problema"
-    //       this.loading = false
-    //       console.log(error)
-    //       this.cdRef.detectChanges();
+      //   },
+      //   error: (error)=>{
+      //     let msg = "Hi ha hagut un problema"
+      //     this.loading = false
+      //     console.log(error)
+      //     this.cdRef.detectChanges();
 
-    //       if (error.status == 0){
-    //         msg = "No s'ha pogut connectar amb el servidor"
-    //       }else if (error.status == 401){
-    //         msg = "Aquest email no està disponible"
-    //       }else if (error.status == 500){
-    //         msg = "Problema en crear usuari"
-    //       }
+      //     if (error.status == 0){
+      //       msg = "No s'ha pogut connectar amb el servidor"
+      //     }else if (error.status == 401){
+      //       msg = "Aquest email no està disponible"
+      //     }else if (error.status == 500){
+      //       msg = "Problema en crear usuari"
+      //     }
           
-    //       this._snackBar.open(msg, 'X', {
-    //         horizontalPosition: 'right',
-    //         verticalPosition: 'top',
-    //         duration: 10 * 1000,
-    //         panelClass: ['error-snackbar']
-    //       });
+      //     this._snackBar.open(msg, 'X', {
+      //       horizontalPosition: 'right',
+      //       verticalPosition: 'top',
+      //       duration: 10 * 1000,
+      //       panelClass: ['error-snackbar']
+      //     });
           
-    //     },
-    //   })
-    // }
+        // },
+      // })
+    }
 
     }
 }

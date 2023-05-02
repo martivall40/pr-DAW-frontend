@@ -1,35 +1,65 @@
-.option1{
-  background:  url("https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg")  center / contain no-repeat;
-  white-space: nowrap
-
-}
-
-
-.option2{
-  background:  url("https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg")  center / contain no-repeat;
-  white-space: nowrap;
-  display:inline
-}
-
-
-
 .card {
   max-width: 90%;
   margin:15px auto;
 }
 
-.graph{
+.graph {
   margin:0 auto;
   width:60%;
 }
 
-.buto{
+.buto {
   // max-width: 90%;
   // margin:15px auto;
-  height: 70px;
+  // height: 70px;
+  width: 40px;
 }
 
-mat-card-header{
-  margin-bottom: 0;
+mat-card-header {
+  margin-bottom: 16px;
 
+}
+
+button{
+  width: 40px;
+}
+
+a[mat-icon-button]{
+  vertical-align: middle;
+}
+
+
+ 
+// mat-card {
+//   width: 33vw;
+//   margin: 5% auto;
+//   border-radius: 8px;
+// }
+
+// @media only screen and (max-width: 1000px) {
+//   mat-card {
+//     width: 45vw;
+//   }
+// }
+
+// @media only screen and (max-width: 700px) {
+//   mat-card {
+//     width: 65vw;
+//   }
+// }
+
+mat-form-field, mat-checkbox {
+  width: 80%;
+  display: block;
+  margin: auto;
+}
+mat-card-content {
+  margin-top: 20px;
+}
+
+.submit-button {
+  margin-top: 20px;
+  display: block;
+  width: 80%;
+  margin: 20px auto;
 }

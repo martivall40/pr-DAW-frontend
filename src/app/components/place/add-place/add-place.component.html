@@ -1,7 +1,7 @@
 <mat-card class="card">
   <mat-card-header>
-    <div mat-card-avatar></div>
-    <mat-card-title>Afegir ubicació</mat-card-title>
+    <!-- <div mat-card-avatar><a mat-button><mat-icon>keyboard_arrow_left</mat-icon></a></div> -->
+    <mat-card-title><a [routerLink]="['/place']" mat-icon-button class="icon-button-large"><mat-icon>keyboard_arrow_left</mat-icon></a>&nbsp;Afegir ubicació</mat-card-title>
     
   </mat-card-header>
     <mat-divider></mat-divider>
@@ -14,27 +14,26 @@
           matInput
           formControlName="name">
           <mat-error *ngIf="place.controls.name.errors?.['required']">Nom obligatori</mat-error>
-        <mat-icon matSuffix>email</mat-icon>
+        <mat-icon matSuffix>place</mat-icon>
       </mat-form-field>
       <mat-form-field>
-        <mat-select ><!-- [(value)]="selected" [ngClass]="selected" -->
+      <mat-label>Tipus</mat-label>
+      <mat-select formControlName="type">
           <mat-option>None</mat-option>
-          <mat-option value="option1">Option 1
-            <img with="10" height="10" src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg">
-      
-          </mat-option>      
-          <mat-option value="option2">Option 2
-            <img with="10" height="10" src="https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg">
-      
-          </mat-option>
-      
-          <mat-option value="option3">Option 3</mat-option>
+          <mat-option value="option1"><mat-icon>house</mat-icon>Option 1</mat-option>      
+          <mat-option value="option2"><mat-icon>bed</mat-icon>Option 2</mat-option>      
+          <mat-option value="option2"><mat-icon>chair</mat-icon>Option 2</mat-option>      
+          <mat-option value="option2"><mat-icon>kitchen</mat-icon>Option 2</mat-option>      
+          <mat-option value="option2"><mat-icon>roofing</mat-icon>Option 2</mat-option>      
+          <mat-option value="option2"><mat-icon>grass</mat-icon>Option 2</mat-option>      
+          <mat-option value="option2"><mat-icon>garage</mat-icon>Option 2</mat-option>      
         </mat-select>
+        <mat-error *ngIf="place.controls.type.errors?.['required']">Afageix el tipus</mat-error>
       </mat-form-field>
       <button
         mat-raised-button
         color="primary"
-        class="place-button"
+        class="submit-button"
         [disabled]="!place.valid || loading">
         Afegir
       </button>
