@@ -20,6 +20,10 @@ mat-card-header{
   padding: 10px;
 }
 
+mat-card-actions{
+  width:100%;
+}
+
 mat-grid-list{
   max-width: 90%;
   margin:15px auto;
@@ -39,32 +43,11 @@ mat-grid-tile:hover{
   height:99%;
 }
 
-
-
-.ubicacions{
-  background: url("../../../assets/img/ubicacions.jpeg") no-repeat;
+.img{
+  // background: url("../../../assets/img/place/garage.png") no-repeat;
   background-size: cover;
   // width: 100%;
   height: 100%;
 }
 
-.aparells{
-  background: url("../../../assets/img/aparells.png") no-repeat;
-  background-size: cover;
-  // width: 100%;
-  height: 100%;
-}
 
-.logs{
-  background: url("../../../assets/img/logs.png") no-repeat;
-  background-size: cover;
-  // width: 100%;
-  height: 100%;
-}
-
-.graph{
-  background: url("../../../assets/img/graph.jpg") no-repeat;
-  background-size: cover;
-  // width: 100%;
-  height: 100%;
-}

@@ -1,5 +1,4 @@
 import { Component,OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-place',
@@ -9,7 +8,7 @@ import { Router } from '@angular/router';
 export class PlaceComponent implements OnInit {
   breakpoint: number = 1
 
-  constructor(private _router: Router){}
+  constructor(){}
 
   ngOnInit(){
     this.onResize()
@@ -29,11 +28,4 @@ export class PlaceComponent implements OnInit {
   
   }
 
-  addPlace(){
-    this._router.navigate(['/add-place']);
-  }
-
-  onClick(url:string){
-    this._router.navigate([url]);
-  } 
 }
