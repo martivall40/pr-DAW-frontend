@@ -21,6 +21,7 @@ import { ImgDialogComponent } from './components/shared-components/dialog/img-di
 import { PlaceComponent } from './components/place/place.component';
 import { AddPlaceComponent } from './components/place/add-place/add-place.component';
 import { DeviceComponent } from './components/device/device.component';
+import { AddDeviceComponent } from './components/device/add-device/add-device.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { DeviceComponent } from './components/device/device.component';
     PlaceComponent,
     AddPlaceComponent,
     DeviceComponent,
+    AddDeviceComponent,
   ],
   imports: [
     BrowserModule,
