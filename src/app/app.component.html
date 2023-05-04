@@ -17,6 +17,7 @@
             <mat-nav-list>
                 <a mat-list-item [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}" [routerLinkActive]="['active']" ><mat-icon>home</mat-icon> Inici</a>
                 <a mat-list-item [routerLink]="['/place']" [routerLinkActive]="['active']" *ngIf="userIsAuthenticated" ><mat-icon>place</mat-icon> Ubicacions</a>
+                <a mat-list-item [routerLink]="['/device']" [routerLinkActive]="['active']" *ngIf="userIsAuthenticated" ><span class="material-symbols-outlined">memory_alt</span> Dispositius</a>
 
             </mat-nav-list>
         </mat-sidenav>

@@ -20,6 +20,7 @@ import { PriceComponent } from './components/home/price/price.component';
 import { ImgDialogComponent } from './components/shared-components/dialog/img-dialog/img-dialog.component';
 import { PlaceComponent } from './components/place/place.component';
 import { AddPlaceComponent } from './components/place/add-place/add-place.component';
+import { DeviceComponent } from './components/device/device.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AddPlaceComponent } from './components/place/add-place/add-place.compon
     ImgDialogComponent,
     PlaceComponent,
     AddPlaceComponent,
+    DeviceComponent,
   ],
   imports: [
     BrowserModule,

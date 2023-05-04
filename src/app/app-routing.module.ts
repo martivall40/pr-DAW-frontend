@@ -7,12 +7,14 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { PlaceComponent } from './components/place/place.component';
 import { AddPlaceComponent } from './components/place/add-place/add-place.component';
+import { DeviceComponent } from './components/device/device.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'place', component: PlaceComponent, canActivate: [AuthGuard]},
   {path: 'add-place', component: AddPlaceComponent, canActivate: [AuthGuard]},
+  {path: 'device', component: DeviceComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
