@@ -11,6 +11,9 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { AuthService } from 'src/app/auth/auth.service';
 
 import { MatSnackBar} from '@angular/material/snack-bar';
+
+import { HomeService } from 'src/app/services/home.service';
+
 @Component({
   selector: 'app-add-place',
   templateUrl: './add-place.component.html',
@@ -20,7 +23,11 @@ export class AddPlaceComponent implements OnInit {
   public loading: boolean = false;
   place:any;
 
-  constructor(){}
+  constructor(
+    private _homeService:HomeService,
+    private _snackBar: MatSnackBar,
+
+  ){}
 
   ngOnInit(): void {
     this.place = new FormGroup({
@@ -33,55 +40,80 @@ export class AddPlaceComponent implements OnInit {
     });
   }
 
-  onAdd() {
+  onSubmit() {
     if(this.place.valid){
       console.log(this.place.value)
       this.loading = true
-      // this.authService.createUser(this.place.value.username, this.place.value.email, this.place.value.password).subscribe({
-      //   next: (res)=>{
-      //     this.loading = false
-      //     // console.log(res)
-
-      //     // solucionar problemes actualitzar var ngIf
-      //     this.cdRef.detectChanges();
-
-      //     let msg = "Usuari creat correctament"
-
-      //     this._snackBar.open(msg, 'X', {
-      //       horizontalPosition: 'right',
-      //       verticalPosition: 'top',
-      //       duration: 10 * 1000,
-      //       panelClass: ['success-snackbar']
+      let msg = ''
+      let style = ''
+      this._homeService.createHome(this.place.value.name, this.place.value.type).subscribe({
+        next: (res) => {
+          this.loading = false
+          msg = "perf"
+          style = 'success-snackbar'
+          console.log(res)
+        },
+        error: (err) => {
+          msg = err.message
+          style = 'error-snackbar'
+        },
+        complete: () => {
+          this._snackBar.open(msg, 'X', {
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+            duration: 10 * 1000,
+            panelClass: [style]
             
-      //     });
+          });
+        }
+      
+      })
+    //   this.authService.createHome(this.place.value.name, this.place.value.type).subscribe({
+    //     next: (res)=>{
+    //       this.loading = false
+    //       // console.log(res)
 
-      //     this.tabNum = 0
+    //       // solucionar problemes actualitzar var ngIf
+    //       this.cdRef.detectChanges();
 
-      //   },
-      //   error: (error)=>{
-      //     let msg = "Hi ha hagut un problema"
-      //     this.loading = false
-      //     console.log(error)
-      //     this.cdRef.detectChanges();
+    //       let msg = "Usuari creat correctament"
 
-      //     if (error.status == 0){
-      //       msg = "No s'ha pogut connectar amb el servidor"
-      //     }else if (error.status == 401){
-      //       msg = "Aquest email no està disponible"
-      //     }else if (error.status == 500){
-      //       msg = "Problema en crear usuari"
-      //     }
+    //       this._snackBar.open(msg, 'X', {
+    //         horizontalPosition: 'right',
+    //         verticalPosition: 'top',
+    //         duration: 10 * 1000,
+    //         panelClass: ['success-snackbar']
+            
+    //       });
+
+    //       this.tabNum = 0
+
+    //     },
+    //     error: (error)=>{
+    //       let msg = "Hi ha hagut un problema"
+    //       this.loading = false
+    //       console.log(error)
+    //       this.cdRef.detectChanges();
+
+    //       if (error.status == 0){
+    //         msg = "No s'ha pogut connectar amb el servidor"
+    //       }else if (error.status == 401){
+    //         msg = "Aquest email no està disponible"
+    //       }else if (error.status == 500){
+    //         msg = "Problema en crear usuari"
+    //       }
           
-      //     this._snackBar.open(msg, 'X', {
-      //       horizontalPosition: 'right',
-      //       verticalPosition: 'top',
-      //       duration: 10 * 1000,
-      //       panelClass: ['error-snackbar']
-      //     });
+    //       this._snackBar.open(msg, 'X', {
+    //         horizontalPosition: 'right',
+    //         verticalPosition: 'top',
+    //         duration: 10 * 1000,
+    //         panelClass: ['error-snackbar']
+    //       });
           
-        // },
-      // })
-    }
+    //     },
+    //   })
+    // }
 
     }
+  }
 }

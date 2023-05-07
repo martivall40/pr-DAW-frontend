@@ -1,4 +1,5 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,ChangeDetectorRef } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-device',
@@ -8,7 +9,19 @@ import { Component,OnInit } from '@angular/core';
 export class DeviceComponent implements OnInit {
   breakpoint: number = 1
 
-  constructor(){}
+  mobileQueryTitle: MediaQueryList;
+  mobileQueryImg: MediaQueryList;
+
+  private _mobileQueryListener: () => void;
+
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    // titol responsive
+    this.mobileQueryTitle = media.matchMedia('(max-width: 430px)');
+    this.mobileQueryImg = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQueryTitle.addListener(this._mobileQueryListener);
+    this.mobileQueryImg.addListener(this._mobileQueryListener);
+  }
 
   ngOnInit(){
     this.onResize()

@@ -7,7 +7,7 @@
     <mat-divider></mat-divider>
   <mat-card-content>
       <mat-spinner *ngIf="loading"></mat-spinner>
-      <form *ngIf="!loading"  [formGroup]="place" (submit)="onAdd()">
+      <form *ngIf="!loading"  [formGroup]="place" (submit)="onSubmit()">
       <mat-form-field>
       <mat-label>Nom</mat-label>
       <input
@@ -20,13 +20,14 @@
       <mat-label>Tipus</mat-label>
       <mat-select formControlName="type">
           <mat-option>None</mat-option>
-          <mat-option value="option1"><mat-icon>house</mat-icon>Option 1</mat-option>      
-          <mat-option value="option2"><mat-icon>bed</mat-icon>Option 2</mat-option>      
-          <mat-option value="option2"><mat-icon>chair</mat-icon>Option 2</mat-option>      
-          <mat-option value="option2"><mat-icon>kitchen</mat-icon>Option 2</mat-option>      
-          <mat-option value="option2"><mat-icon>roofing</mat-icon>Option 2</mat-option>      
-          <mat-option value="option2"><mat-icon>grass</mat-icon>Option 2</mat-option>      
-          <mat-option value="option2"><mat-icon>warehouse</mat-icon>Option 2</mat-option>      
+          <mat-option value="Home"><mat-icon>house</mat-icon>Casa</mat-option>      
+          <mat-option value="Bedroom"><mat-icon>bed</mat-icon>Dormitori
+          </mat-option>      
+          <mat-option value="Room"><mat-icon>chair</mat-icon>Habitació</mat-option>      
+          <mat-option value="Kitchen"><mat-icon>kitchen</mat-icon>Cuina</mat-option>      
+          <mat-option value="Roof"><mat-icon>roofing</mat-icon>Teulada</mat-option>      
+          <mat-option value="Garden"><mat-icon>grass</mat-icon>Gardí</mat-option>      
+          <mat-option value="Garage"><mat-icon>warehouse</mat-icon>Garatge</mat-option>      
         </mat-select>
         <mat-error *ngIf="place.controls.type.errors?.['required']">Afageix el tipus</mat-error>
       </mat-form-field>

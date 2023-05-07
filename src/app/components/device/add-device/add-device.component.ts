@@ -33,7 +33,7 @@ export class AddDeviceComponent implements OnInit {
     });
   }
 
-  onAdd() {
+  onSubmit() {
     if(this.device.valid){
       console.log(this.device.value)
       this.loading = true

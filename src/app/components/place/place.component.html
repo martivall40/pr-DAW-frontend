@@ -1,6 +1,6 @@
 <mat-card class="mainCard">
   <mat-card-header>
-    <div mat-card-avatar></div>
+    <div mat-card-avatar *ngIf="!mobileQueryTitle.matches"></div>
     <mat-card-title>Ubicacions</mat-card-title>
     <mat-card-actions align="end">
       <a mat-raised-button color="primary" [routerLink]="['/add-place']"><mat-icon>add</mat-icon> Afegir Ubicació</a>
@@ -13,7 +13,7 @@
 
 </mat-card>
 
-<mat-grid-list [cols]="breakpoint" rowHeight="315px" gutterSize="15px" (window:resize)="onResize($event)">
+<mat-grid-list [cols]="breakpoint"  [rowHeight]="mobileQueryImg.matches ? '315px' : '400px'" gutterSize="15px" (window:resize)="onResize($event)">
   <mat-grid-tile [routerLink]="['/place']">
     <mat-card class="childCard">
       <mat-card-header>
@@ -25,7 +25,7 @@
       </mat-card-header>
         <mat-divider></mat-divider>
         
-      <mat-card-content class="img" style="background: url('../../../assets/img/place/home.jpg') no-repeat;">
+      <mat-card-content class="img" style="background: url('../../../assets/img/place/home.jpg') no-repeat;background-size: cover;">
       </mat-card-content>
     
     </mat-card>

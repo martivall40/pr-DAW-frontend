@@ -7,7 +7,7 @@
     <mat-divider></mat-divider>
   <mat-card-content>
       <mat-spinner *ngIf="loading"></mat-spinner>
-      <form *ngIf="!loading"  [formGroup]="device" (submit)="onAdd()">
+      <form *ngIf="!loading"  [formGroup]="device" (submit)="onSubmit()">
       <mat-form-field>
       <mat-label>Nom</mat-label>
       <input

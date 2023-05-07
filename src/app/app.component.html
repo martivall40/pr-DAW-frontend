@@ -19,6 +19,16 @@
                 <a mat-list-item [routerLink]="['/place']" [routerLinkActive]="['active']" *ngIf="userIsAuthenticated" ><mat-icon>place</mat-icon> Ubicacions</a>
                 <a mat-list-item [routerLink]="['/device']" [routerLinkActive]="['active']" *ngIf="userIsAuthenticated" ><span class="material-symbols-outlined">memory_alt</span> Dispositius</a>
 
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      Header
+                    </mat-expansion-panel-header>
+                
+                <a mat-list-item routerLink>Item 1</a>
+                <a mat-list-item routerLink>Item 2</a>
+                <a mat-list-item routerLink>Item 3</a>
+                  </mat-expansion-panel>
+
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>
