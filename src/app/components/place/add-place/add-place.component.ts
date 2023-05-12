@@ -10,9 +10,9 @@ import { ErrorStateMatcher } from '@angular/material/core';
 
 import { AuthService } from 'src/app/auth/auth.service';
 
-import { MatSnackBar} from '@angular/material/snack-bar';
-
 import { HomeService } from 'src/app/services/home.service';
+import { Home } from '../../../models/home';
+import { MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-place',
@@ -116,4 +116,34 @@ export class AddPlaceComponent implements OnInit {
 
     }
   }
+
+  // agafar tots els projectes
+  // getHomes(){
+  //   this.loading = true
+  //   let msg = ''
+  //   let style = ''
+  //   this._homeService.getHomes().subscribe({
+  //     next: (res) => {
+  //       this.loading = false
+  //       msg = "perf"
+  //       style = 'success-snackbar'
+  //       this.homes = res.home
+  //       // console.log(this.homes)
+  //     },
+
+  //     error: (err) => {
+  //       msg = err.message
+  //       style = 'error-snackbar'
+  //     },
+  //     complete: () => {
+  //       this._snackBar.open(msg, 'X', {
+  //         horizontalPosition: 'right',
+  //         verticalPosition: 'top',
+  //         duration: 10 * 1000,
+  //         panelClass: [style]
+          
+  //       });
+  //     }      
+  //   })
+  // }
 }

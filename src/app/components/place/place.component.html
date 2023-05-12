@@ -13,19 +13,19 @@
 
 </mat-card>
 
-<mat-grid-list [cols]="breakpoint"  [rowHeight]="mobileQueryImg.matches ? '315px' : '400px'" gutterSize="15px" (window:resize)="onResize($event)">
+<mat-grid-list [cols]="breakpoint"  [rowHeight]="mobileQueryImg.matches ? '315px' : '400px'" gutterSize="15px" (window:resize)="onResize($event)" *ngFor="let home of homes">
   <mat-grid-tile [routerLink]="['/place']">
     <mat-card class="childCard">
       <mat-card-header>
         <div mat-card-avatar></div>
-        <mat-card-title>ubicació d'exemple</mat-card-title>
+        <mat-card-title>{{home.name}}</mat-card-title>
         <!-- <mat-card-actions align="end">
           <button mat-button>Veure'n més</button>
         </mat-card-actions> -->
       </mat-card-header>
         <mat-divider></mat-divider>
         
-      <mat-card-content class="img" style="background: url('../../../assets/img/place/home.jpg') no-repeat;background-size: cover;">
+      <mat-card-content class="img"  style="background: url('{{img[home.type]}}') no-repeat;background-size: cover;">
       </mat-card-content>
     
     </mat-card>
