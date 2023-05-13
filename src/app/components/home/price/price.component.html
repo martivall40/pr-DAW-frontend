@@ -2,16 +2,16 @@
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>Preu electricitat tarifa PVPC</mat-card-title>
-    <mat-card-actions style="margin:0 auto;">
+    <mat-card-actions class="center">
       <button mat-button>Veure'n més</button>
     </mat-card-actions>
     <mat-card-subtitle *ngIf="price">{{price.date | date:'dd-MM-yyyy'}}</mat-card-subtitle>
   </mat-card-header>
     <mat-divider></mat-divider>
-    <mat-spinner style="margin:0 auto;" *ngIf="!price"></mat-spinner>
-    <img *ngIf="price" mat-card-image src="{{price.link}}" (click)="openDialog(price.link)" class='graph' alt="Ellectricity graph">
-  <mat-card-content>
+  <mat-card-content class="centerA">
+    
+    <mat-spinner class="centerM" *ngIf="!price"></mat-spinner>
+    <img class="centerM" *ngIf="price" mat-card-image src="{{price.link}}" (click)="openDialog(price.link)" class='graph' alt="Ellectricity graph">
 
   </mat-card-content>
-
 </mat-card>

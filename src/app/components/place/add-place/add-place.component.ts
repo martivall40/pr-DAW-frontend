@@ -1,17 +1,9 @@
-// import { Component,OnInit } from '@angular/core';
-// import { FormGroup,FormControl,Validators } from '@angular/forms';
-
-import { Component, OnInit,ChangeDetectionStrategy,ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl,FormGroup,Validators,ValidatorFn, AbstractControl,ValidationErrors,NgForm,FormGroupDirective } from '@angular/forms';
+import { FormControl,FormGroup,Validators } from '@angular/forms';
 import { _AbstractConstructor } from '@angular/material/core';
 
-import { ErrorStateMatcher } from '@angular/material/core';
-
-import { AuthService } from 'src/app/auth/auth.service';
-
 import { HomeService } from 'src/app/services/home.service';
-import { Home } from '../../../models/home';
 import { MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -26,6 +18,7 @@ export class AddPlaceComponent implements OnInit {
   constructor(
     private _homeService:HomeService,
     private _snackBar: MatSnackBar,
+    private _router:Router
 
   ){}
 
@@ -45,105 +38,38 @@ export class AddPlaceComponent implements OnInit {
       console.log(this.place.value)
       this.loading = true
       let msg = ''
-      let style = ''
       this._homeService.createHome(this.place.value.name, this.place.value.type).subscribe({
         next: (res) => {
-          this.loading = false
-          msg = "perf"
-          style = 'success-snackbar'
+          msg = "Afegit correctament"
           console.log(res)
-        },
-        error: (err) => {
-          msg = err.message
-          style = 'error-snackbar'
-        },
-        complete: () => {
+
           this._snackBar.open(msg, 'X', {
             horizontalPosition: 'right',
             verticalPosition: 'top',
             duration: 10 * 1000,
-            panelClass: [style]
-            
+            panelClass: ['success-snackbar']
+          });
+
+          this._router.navigate(["/place"]);
+        },
+        error: (error) => { 
+          this.loading = false
+          msg = error.message
+          if (error.status == 0){
+            msg = "No s'ha pogut connectar amb el servidor"
+          }
+          this._snackBar.open(msg, 'X', {
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+            duration: 10 * 1000,
+            panelClass: ['error-snackbar']
           });
         }
       
       })
-    //   this.authService.createHome(this.place.value.name, this.place.value.type).subscribe({
-    //     next: (res)=>{
-    //       this.loading = false
-    //       // console.log(res)
-
-    //       // solucionar problemes actualitzar var ngIf
-    //       this.cdRef.detectChanges();
-
-    //       let msg = "Usuari creat correctament"
-
-    //       this._snackBar.open(msg, 'X', {
-    //         horizontalPosition: 'right',
-    //         verticalPosition: 'top',
-    //         duration: 10 * 1000,
-    //         panelClass: ['success-snackbar']
-            
-    //       });
-
-    //       this.tabNum = 0
-
-    //     },
-    //     error: (error)=>{
-    //       let msg = "Hi ha hagut un problema"
-    //       this.loading = false
-    //       console.log(error)
-    //       this.cdRef.detectChanges();
-
-    //       if (error.status == 0){
-    //         msg = "No s'ha pogut connectar amb el servidor"
-    //       }else if (error.status == 401){
-    //         msg = "Aquest email no està disponible"
-    //       }else if (error.status == 500){
-    //         msg = "Problema en crear usuari"
-    //       }
-          
-    //       this._snackBar.open(msg, 'X', {
-    //         horizontalPosition: 'right',
-    //         verticalPosition: 'top',
-    //         duration: 10 * 1000,
-    //         panelClass: ['error-snackbar']
-    //       });
-          
-    //     },
-    //   })
-    // }
 
     }
   }
 
-  // agafar tots els projectes
-  // getHomes(){
-  //   this.loading = true
-  //   let msg = ''
-  //   let style = ''
-  //   this._homeService.getHomes().subscribe({
-  //     next: (res) => {
-  //       this.loading = false
-  //       msg = "perf"
-  //       style = 'success-snackbar'
-  //       this.homes = res.home
-  //       // console.log(this.homes)
-  //     },
 
-  //     error: (err) => {
-  //       msg = err.message
-  //       style = 'error-snackbar'
-  //     },
-  //     complete: () => {
-  //       this._snackBar.open(msg, 'X', {
-  //         horizontalPosition: 'right',
-  //         verticalPosition: 'top',
-  //         duration: 10 * 1000,
-  //         panelClass: [style]
-          
-  //       });
-  //     }      
-  //   })
-  // }
 }

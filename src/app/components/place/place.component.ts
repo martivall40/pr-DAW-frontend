@@ -19,12 +19,12 @@ export class PlaceComponent implements OnInit {
 
   public homes:Array<Home>=[]
   public img:any
-  public loading:boolean = false
+  public loading:boolean = true
 
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private _homeService:HomeService, private _snackBar: MatSnackBar) {
+  constructor(private changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private _homeService:HomeService, private _snackBar: MatSnackBar) {
     
 
     // titol responsive
@@ -44,7 +44,7 @@ export class PlaceComponent implements OnInit {
       Room: '../../../assets/img/place/room.jpg',
       Garage: '../../../assets/img/place/garage.png',
       Garden: '../../../assets/img/place/garden.jpg',
-      Kitchen: '../../../assets/img/place/kitchen.jpg',
+      Kitchen: '../../../assets/img/place/Kitchen.jpg',
     }
     this.onResize()
     this.getHomes()
@@ -66,30 +66,26 @@ export class PlaceComponent implements OnInit {
   // agafar tots les ubicacions
   getHomes(){
     this.loading = true
-    let msg = ''
-    let style = ''
     this._homeService.getHomes().subscribe({
       next: (res) => {
         this.loading = false
-        msg = "perf"
-        style = 'success-snackbar'
         this.homes = res.home
-        // console.log(this.homes)
+        console.log(this.homes)
       },
 
-      error: (err) => {
-        msg = err.message
-        style = 'error-snackbar'
-      },
-      complete: () => {
+      error: (error) => {
+        this.loading = false
+        let msg = error.message
+        if (error.status == 0){
+          msg = "No s'ha pogut connectar amb el servidor"
+        }
         this._snackBar.open(msg, 'X', {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           duration: 10 * 1000,
-          panelClass: [style]
-          
+          panelClass: ['error-snackbar']
         });
-      }      
+      }    
     })
   }
 

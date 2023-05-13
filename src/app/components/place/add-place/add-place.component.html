@@ -6,7 +6,7 @@
   </mat-card-header>
     <mat-divider></mat-divider>
   <mat-card-content>
-      <mat-spinner *ngIf="loading"></mat-spinner>
+      <mat-spinner class="centerM" *ngIf="loading"></mat-spinner>
       <form *ngIf="!loading"  [formGroup]="place" (submit)="onSubmit()">
       <mat-form-field>
       <mat-label>Nom</mat-label>
