@@ -17,8 +17,8 @@
 </mat-card>
 
 <mat-spinner class="centerM" *ngIf="loading"></mat-spinner>
-<mat-grid-list [cols]="breakpoint"  [rowHeight]="mobileQueryImg.matches ? '315px' : '400px'"  gutterSize="15px" (window:resize)="onResize($event)" *ngFor="let device of devices">
-  <mat-grid-tile [routerLink]="['/device']">
+<mat-grid-list [cols]="breakpoint"  [rowHeight]="mobileQueryImg.matches ? '315px' : '400px'"  gutterSize="15px" (window:resize)="onResize($event)">
+  <mat-grid-tile *ngFor="let device of devices" [routerLink]="['/device']">
     <mat-card class="childCard">
       <mat-card-header>
         <div mat-card-avatar></div>

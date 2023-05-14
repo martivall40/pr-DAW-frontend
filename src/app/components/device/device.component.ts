@@ -39,8 +39,8 @@ export class DeviceComponent implements OnInit {
     this.onResize()
 
     this.img = {
-      Plug: '../../../assets/img/place/home.jpg',
-      plug: '../../../assets/img/place/home.jpg',
+      Plug: '../../../assets/img/device/plug.jpg',
+      plug: '../../../assets/img/device/plug.jpg',
     }
 
     this._route.params.subscribe(params=>{
@@ -66,9 +66,9 @@ export class DeviceComponent implements OnInit {
     if (target.innerWidth <= 600) {
       this.breakpoint = 1;
     } else if (target.innerWidth >= 600) {
-      this.breakpoint = 1;
+      this.breakpoint = 2;
     } else {
-      this.breakpoint = 1;
+      this.breakpoint = 2;
     }
   
   }
