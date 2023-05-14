@@ -27,7 +27,10 @@ export class AddDeviceComponent implements OnInit {
       name: new FormControl('',[
         Validators.required,
       ]),
-      type: new FormControl('',[
+      virtual: new FormControl('',[
+        Validators.required,
+      ]),
+      typeString: new FormControl('',[
         Validators.required,
       ])
     });
