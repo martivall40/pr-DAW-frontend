@@ -39,7 +39,7 @@ export class PlaceComponent implements OnInit {
   ngOnInit(){
     this.img = {
       Home: '../../../assets/img/place/home.jpg',
-      Bed: '../../../assets/img/place/b2.jpg',
+      Bedroom: '../../../assets/img/place/b2.jpg',
       Roof: '../../../assets/img/place/roof.jpg',
       Room: '../../../assets/img/place/room.jpg',
       Garage: '../../../assets/img/place/garage.png',

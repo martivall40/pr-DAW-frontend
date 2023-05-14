@@ -16,7 +16,7 @@
 
 <mat-spinner class="centerM" *ngIf="loading"></mat-spinner>
 <mat-grid-list [cols]="breakpoint"  [rowHeight]="mobileQueryImg.matches ? '315px' : '400px'" gutterSize="15px" (window:resize)="onResize($event)" *ngFor="let home of homes">
-  <mat-grid-tile [routerLink]="['/place']">
+  <mat-grid-tile [routerLink]="['/device/'+home._id]">
     <mat-card class="childCard">
       <mat-card-header>
         <div mat-card-avatar></div>

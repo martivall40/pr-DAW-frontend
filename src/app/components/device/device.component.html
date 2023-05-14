@@ -1,32 +1,37 @@
 <mat-card class="mainCard">
   <mat-card-header>
     <div mat-card-avatar *ngIf="!mobileQueryTitle.matches"></div>
-    <mat-card-title>Dispositius</mat-card-title>
+    <mat-card-title [innerHtml]="title"></mat-card-title>
     <mat-card-actions align="end">
-      <a mat-raised-button color="primary" [routerLink]="['/add-device']"><mat-icon>add</mat-icon> Afegir dispositiu</a>
+      <a *ngIf="home" mat-raised-button color="primary" [routerLink]="['/add-device']"><mat-icon>add</mat-icon> Afegir dispositiu</a>
+      <a *ngIf="!home" mat-raised-button color="warn" [routerLink]="['/place']"><mat-icon>place</mat-icon> Ubicacions</a>
         </mat-card-actions>
   </mat-card-header>
     <mat-divider></mat-divider>
-  <mat-card-content>
-    <p>Ara mateix no teniu cap dispositiu, afegiex-ne una per començar!</p>
-  </mat-card-content>
+    <mat-card-content *ngIf="devices.length == 0 || loading">
+      <p *ngIf="loading">Carregant ubicacions</p>
+      <p *ngIf="devices.length == 0 && !loading && !home">No teniu cap dispositiu entra en <a [routerLink]="['/place']">ubicacions</a> i creeu-ne un!</p>
+      <p *ngIf="devices.length == 0 && !loading && home">Crear un dispositiu per començar!</p>
+    </mat-card-content>
 
 </mat-card>
 
-<mat-grid-list [cols]="breakpoint"  [rowHeight]="mobileQueryImg.matches ? '315px' : '400px'"  gutterSize="15px" (window:resize)="onResize($event)">
+<mat-spinner class="centerM" *ngIf="loading"></mat-spinner>
+<mat-grid-list [cols]="breakpoint"  [rowHeight]="mobileQueryImg.matches ? '315px' : '400px'"  gutterSize="15px" (window:resize)="onResize($event)" *ngFor="let device of devices">
   <mat-grid-tile [routerLink]="['/device']">
     <mat-card class="childCard">
       <mat-card-header>
         <div mat-card-avatar></div>
-        <mat-card-title>dispositiu exemple</mat-card-title>
+        <mat-card-title>{{device.name}}</mat-card-title>
+        <mat-card-subtitle *ngIf="!home">{{device.home.name}}</mat-card-subtitle>
         <!-- <mat-card-actions align="end">
           <button mat-button>Veure'n més</button>
         </mat-card-actions> -->
       </mat-card-header>
         <mat-divider></mat-divider>
         
-      <mat-card-content class="img" style="background: url('../../../assets/img/place/home.jpg') no-repeat;background-size: cover;">
-      </mat-card-content>
+        <mat-card-content class="img"  style="background: url('{{img[device.typeString]}}') no-repeat;background-size: cover;">
+        </mat-card-content>
     
     </mat-card>
   </mat-grid-tile>
@@ -35,6 +40,7 @@
 
 
 <mat-card class="mainCard">
-  <a [routerLink]="['/add-device']" mat-raised-button color="primary" class="buto"><mat-icon>add</mat-icon> Afegir dispositiu</a>
+  <a *ngIf="home" [routerLink]="['/add-device']" mat-raised-button color="primary" class="buto"><mat-icon>add</mat-icon> Afegir dispositiu</a>
+  <a *ngIf="!home" [routerLink]="['/place']" mat-raised-button color="primary" class="buto"><mat-icon>place</mat-icon> Ubicacions</a>
 </mat-card>
 

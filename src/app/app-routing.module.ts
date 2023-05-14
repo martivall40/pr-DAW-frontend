@@ -16,6 +16,7 @@ const routes: Routes = [
   {path: 'place', component: PlaceComponent, canActivate: [AuthGuard]},
   {path: 'add-place', component: AddPlaceComponent, canActivate: [AuthGuard]},
   {path: 'device', component: DeviceComponent, canActivate: [AuthGuard]},
+  {path: 'device/:id', component: DeviceComponent, canActivate: [AuthGuard]},
   {path: 'add-device', component: AddDeviceComponent, canActivate: [AuthGuard]},
 ];
 
