@@ -39,7 +39,6 @@ export class DeviceComponent implements OnInit {
     this.onResize()
 
     this.img = {
-      Plug: '../../../assets/img/device/plug.jpg',
       plug: '../../../assets/img/device/plug.jpg',
     }
 
@@ -86,7 +85,7 @@ export class DeviceComponent implements OnInit {
 
       error: (error) => {
         this.loading = false
-        let msg = error.message
+        let msg = error.error.message
         if (error.status == 0){
           msg = "No s'ha pogut connectar amb el servidor"
         }
@@ -112,7 +111,7 @@ export class DeviceComponent implements OnInit {
 
       error: (error) => {
         this.loading = false
-        let msg = error.message
+        let msg = error.error.message
         if (error.status == 0){
           msg = "No s'ha pogut connectar amb el servidor"
         }
@@ -135,7 +134,7 @@ export class DeviceComponent implements OnInit {
       },
 
       error: (error) => {
-        let msg = error.message
+        let msg = error.error.message
         if (error.status == 0){
           msg = "No s'ha pogut connectar amb el servidor"
         }

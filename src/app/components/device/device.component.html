@@ -3,7 +3,7 @@
     <div mat-card-avatar *ngIf="!mobileQueryTitle.matches"></div>
     <mat-card-title [innerHtml]="title"></mat-card-title>
     <mat-card-actions align="end">
-      <a *ngIf="home" mat-raised-button color="primary" [routerLink]="['/add-device']"><mat-icon>add</mat-icon> Afegir dispositiu</a>
+      <a *ngIf="home" mat-raised-button color="primary" [routerLink]="['/add-device/'+home._id]"><mat-icon>add</mat-icon> Afegir dispositiu</a>
       <a *ngIf="!home" mat-raised-button color="warn" [routerLink]="['/place']"><mat-icon>place</mat-icon> Ubicacions</a>
         </mat-card-actions>
   </mat-card-header>
@@ -40,7 +40,7 @@
 
 
 <mat-card class="mainCard">
-  <a *ngIf="home" [routerLink]="['/add-device']" mat-raised-button color="primary" class="buto"><mat-icon>add</mat-icon> Afegir dispositiu</a>
+  <a *ngIf="home" [routerLink]="['/add-device/'+home._id]" mat-raised-button color="primary" class="buto"><mat-icon>add</mat-icon> Afegir dispositiu</a>
   <a *ngIf="!home" [routerLink]="['/place']" mat-raised-button color="primary" class="buto"><mat-icon>place</mat-icon> Ubicacions</a>
 </mat-card>
 

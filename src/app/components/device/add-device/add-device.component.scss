@@ -48,13 +48,22 @@ a[mat-icon-button]{
 //   }
 // }
 
-mat-form-field, mat-checkbox {
+mat-form-field, mat-checkbox, mat-slide-toggle {
   width: 80%;
   display: block;
   margin: auto;
 }
 mat-card-content {
   margin-top: 20px;
+}
+
+.divider {
+  margin: 20px auto;
+}
+
+.divider2 {
+  width:80%;
+  margin: 20px auto;
 }
 
 .submit-button {

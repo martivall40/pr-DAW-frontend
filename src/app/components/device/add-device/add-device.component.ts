@@ -11,6 +11,10 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { AuthService } from 'src/app/auth/auth.service';
 
 import { MatSnackBar} from '@angular/material/snack-bar';
+import { HomeService } from 'src/app/services/home.service';
+import { ActivatedRoute } from '@angular/router';
+
+
 @Component({
   selector: 'app-add-device',
   templateUrl: './add-device.component.html',
@@ -19,27 +23,47 @@ import { MatSnackBar} from '@angular/material/snack-bar';
 export class AddDeviceComponent implements OnInit {
   public loading: boolean = false;
   device:any;
+  public id:any = undefined
+  public home:any = null
+  public title:string = "&nbsp;Afegir dispositiu a la ubicació ..."
+  public provider:string|null = null
 
-  constructor(){}
+  constructor(private _route:ActivatedRoute,private _homeService:HomeService,private _snackBar:MatSnackBar){}
 
   ngOnInit(): void {
     this.device = new FormGroup({
       name: new FormControl('',[
         Validators.required,
       ]),
-      virtual: new FormControl('',[
-        Validators.required,
-      ]),
       typeString: new FormControl('',[
         Validators.required,
-      ])
+      ]),
+      real: new FormControl(''),
+      providerString: new FormControl(''),
+      key: new FormControl(''),
     });
+
+
+
+    this._route.params.subscribe(params=>{
+  
+      this.id=params['id']
+      console.log(params)
+      if(this.id == undefined) {
+        this.home=false
+        this.title="Tots els dispositius"
+      }else{
+        this.home=true
+        this.title="Dispositius de la ubicació: ..."
+        this.getHome(this.id)
+      }
+    })
   }
 
   onSubmit() {
     if(this.device.valid){
       console.log(this.device.value)
-      this.loading = true
+      // this.loading = true
       // this.authService.createUser(this.device.value.username, this.device.value.email, this.device.value.password).subscribe({
       //   next: (res)=>{
       //     this.loading = false
@@ -50,7 +74,7 @@ export class AddDeviceComponent implements OnInit {
 
       //     let msg = "Usuari creat correctament"
 
-      //     this._snackBar.open(msg, 'X', {
+      //     this.private .open(msg, 'X', {
       //       horizontalPosition: 'right',
       //       verticalPosition: 'top',
       //       duration: 10 * 1000,
@@ -75,7 +99,7 @@ export class AddDeviceComponent implements OnInit {
       //       msg = "Problema en crear usuari"
       //     }
           
-      //     this._snackBar.open(msg, 'X', {
+      //     this.private .open(msg, 'X', {
       //       horizontalPosition: 'right',
       //       verticalPosition: 'top',
       //       duration: 10 * 1000,
@@ -86,5 +110,34 @@ export class AddDeviceComponent implements OnInit {
       // })
     }
 
-    }
+  }
+
+  onChangeProvider(value:any){
+    // console.log(this.device.value.providerString)
+    this.provider = this.device.value.providerString
+  }
+
+  getHome(id: string){
+    this._homeService.getHome(id).subscribe({
+      next: (res) => {
+        this.home = res.home[0]
+        this.title = `&nbsp;Afegir dispositiu a la ubicació: <b>${this.home.name}</b>`
+        // console.log(res)
+      },
+
+      error: (error) => {
+        let msg = error.error.message
+        if (error.status == 0){
+          msg = "No s'ha pogut connectar amb el servidor"
+        }
+        this._snackBar.open(msg, 'X', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 10 * 1000,
+          panelClass: ['error-snackbar']
+        });
+      }    
+    })
+  }
+
 }

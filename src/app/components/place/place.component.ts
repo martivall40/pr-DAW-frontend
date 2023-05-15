@@ -75,7 +75,7 @@ export class PlaceComponent implements OnInit {
 
       error: (error) => {
         this.loading = false
-        let msg = error.message
+        let msg = error.error.message
         if (error.status == 0){
           msg = "No s'ha pogut connectar amb el servidor"
         }

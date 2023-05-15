@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'add-place', component: AddPlaceComponent, canActivate: [AuthGuard]},
   {path: 'device', component: DeviceComponent, canActivate: [AuthGuard]},
   {path: 'device/:id', component: DeviceComponent, canActivate: [AuthGuard]},
-  {path: 'add-device', component: AddDeviceComponent, canActivate: [AuthGuard]},
+  {path: 'add-device/:id', component: AddDeviceComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

@@ -54,7 +54,7 @@ export class AddPlaceComponent implements OnInit {
         },
         error: (error) => { 
           this.loading = false
-          msg = error.message
+          msg = error.error.message
           if (error.status == 0){
             msg = "No s'ha pogut connectar amb el servidor"
           }

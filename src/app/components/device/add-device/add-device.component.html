@@ -1,46 +1,75 @@
 <mat-card class="card">
   <mat-card-header>
     <!-- <div mat-card-avatar><a mat-button><mat-icon>keyboard_arrow_left</mat-icon></a></div> -->
-    <mat-card-title><a [routerLink]="['/device']" mat-icon-button class="icon-button-large"><mat-icon>keyboard_arrow_left</mat-icon></a>&nbsp;Afegir dispositiu</mat-card-title>
+    <mat-card-title><a [routerLink]="['/device/'+home._id]" mat-icon-button class="icon-button-large"><mat-icon>keyboard_arrow_left</mat-icon></a><span [innerHTML]="title"></span></mat-card-title>
     
   </mat-card-header>
-    <mat-divider></mat-divider>
+  <mat-divider></mat-divider>
   <mat-card-content>
-      <mat-spinner *ngIf="loading"></mat-spinner>
-      <form *ngIf="!loading"  [formGroup]="device" (submit)="onSubmit()">
+    <mat-spinner class="centerM" *ngIf="loading"></mat-spinner>
+    <form *ngIf="!loading"  [formGroup]="device" (submit)="onSubmit()">
+      <h3 class="divider2">Paràmetres generals</h3>
       <mat-form-field>
-      <mat-label>Nom</mat-label>
-      <input
-          matInput
-          formControlName="name">
-          <mat-error *ngIf="device.controls.name.errors?.['required']">Nom obligatori</mat-error>
+        <mat-label>Nom</mat-label>
+        <input
+        matInput
+        formControlName="name">
+        <mat-error *ngIf="device.controls.name.errors?.['required']">Nom obligatori</mat-error>
         <mat-icon matSuffix>device</mat-icon>
       </mat-form-field>
       <mat-form-field>
-      <mat-label>Tipus</mat-label>
-      <mat-select formControlName="type">
+        <mat-label>Tipus</mat-label>
+        <mat-select formControlName="typeString">
           <mat-option>None</mat-option>
           <mat-option value="Plug"><mat-icon>power</mat-icon>Endoll</mat-option>      
-          <mat-option value="option1"><mat-icon>house</mat-icon>Option 1</mat-option>      
-          <mat-option value="option2"><mat-icon>bed</mat-icon>Option 2</mat-option>      
-          <mat-option value="option2"><mat-icon>chair</mat-icon>Option 2</mat-option>      
-          <mat-option value="option2"><mat-icon>kitchen</mat-icon>Option 2</mat-option>      
-          <mat-option value="option2"><mat-icon>roofing</mat-icon>Option 2</mat-option>      
-          <mat-option value="option2"><mat-icon>grass</mat-icon>Option 2</mat-option>      
-          <mat-option value="option2"><mat-icon>warehouse</mat-icon>Option 2</mat-option>      
+          
         </mat-select>
-        <mat-error *ngIf="device.controls.type.errors?.['required']">Afageix el tipus</mat-error>
+        <mat-error *ngIf="device.controls.typeString.errors?.['required']">Afageix el tipus</mat-error>
       </mat-form-field>
-      <button
-        mat-raised-button
-        color="primary"
-        class="submit-button"
-        [disabled]="!device.valid || loading">
-        Afegir
-      </button>
-
-
-    </form>
-  </mat-card-content>
+      
+      <mat-divider></mat-divider>
+      <h3 class="divider2">Actuació</h3>
+      
+      <mat-slide-toggle class="divider"
+      formControlName="real"
+      color="Accent">
+      Real
+    </mat-slide-toggle>
+    
+    <mat-divider></mat-divider>
+    
+    <h3 class="divider2">Paràmetres reals</h3>
+    
+    <mat-form-field class="divider">
+      <mat-label>Proveïdor</mat-label>
+      <mat-select formControlName="providerString" (selectionChange)="onChangeProvider($event)">
+        <mat-option>None</mat-option>
+        <mat-option value="tuya">Tuya</mat-option>      
+        
+      </mat-select>
+    </mat-form-field>
+    
+    
+    <mat-form-field *ngIf="provider == 'tuya'">
+      <mat-label>Key</mat-label>
+      <input
+      matInput
+      formControlName="key">
+      <!-- <mat-error *ngIf="device.controls.name.errors?.['required']">Nom obligatori</mat-error> -->
+      <mat-icon matSuffix>key</mat-icon>
+    </mat-form-field>
+    
+    
+    <button
+    mat-raised-button
+    color="primary"
+    class="submit-button"
+    [disabled]="!device.valid || loading">
+    Afegir
+  </button>
+  
+  
+</form>
+</mat-card-content>
 
 </mat-card>
