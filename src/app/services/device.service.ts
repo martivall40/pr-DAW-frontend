@@ -18,14 +18,13 @@ export class DeviceService{
       this.host=environment.host;
   }
 
-  // guardar ubicacio
-  createDevice(name:string, virtual:boolean, typeString:string, id:string): Observable<any>{
- 
-    let params = JSON.stringify({
-      name: name,
-      virtual: true,
-      typeString: typeString
-    });
+  // guardar dispositiu
+  createDevice(device:any, id:string): Observable<any>{
+
+
+    let params = JSON.stringify(device)
+    console.log(params);
+
     let headers = new HttpHeaders().set('Content-type','application/json')
 
     return this._http.post(this.host+'/api/device/create/'+id,params, {headers:headers})

@@ -1,19 +1,11 @@
-// import { Component,OnInit } from '@angular/core';
-// import { FormGroup,FormControl,Validators } from '@angular/forms';
-
-import { Component, OnInit,ChangeDetectionStrategy,ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormControl,FormGroup,Validators,ValidatorFn, AbstractControl,ValidationErrors,NgForm,FormGroupDirective } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl,FormGroup,Validators} from '@angular/forms';
 import { _AbstractConstructor } from '@angular/material/core';
-
-import { ErrorStateMatcher } from '@angular/material/core';
-
-import { AuthService } from 'src/app/auth/auth.service';
 
 import { MatSnackBar} from '@angular/material/snack-bar';
 import { HomeService } from 'src/app/services/home.service';
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute,Router } from '@angular/router';
+import { DeviceService } from 'src/app/services/device.service';
 
 @Component({
   selector: 'app-add-device',
@@ -28,7 +20,13 @@ export class AddDeviceComponent implements OnInit {
   public title:string = "&nbsp;Afegir dispositiu a la ubicació ..."
   public provider:string|null = null
 
-  constructor(private _route:ActivatedRoute,private _homeService:HomeService,private _snackBar:MatSnackBar){}
+  constructor(
+    private _route:ActivatedRoute,
+    private _router:Router,
+    private _homeService:HomeService,
+    private _snackBar:MatSnackBar,
+    private _deviceService:DeviceService
+  ){}
 
   ngOnInit(): void {
     this.device = new FormGroup({
@@ -38,7 +36,7 @@ export class AddDeviceComponent implements OnInit {
       typeString: new FormControl('',[
         Validators.required,
       ]),
-      real: new FormControl(''),
+      real: new FormControl(false),
       providerString: new FormControl(''),
       key: new FormControl(''),
     });
@@ -51,10 +49,11 @@ export class AddDeviceComponent implements OnInit {
       console.log(params)
       if(this.id == undefined) {
         this.home=false
-        this.title="Tots els dispositius"
+        this.title="Error"
+        this._router.navigate(['device'])
       }else{
         this.home=true
-        this.title="Dispositius de la ubicació: ..."
+        this.title="&nbsp;Afegir dispositiu a la ubicació: ..."
         this.getHome(this.id)
       }
     })
@@ -63,51 +62,37 @@ export class AddDeviceComponent implements OnInit {
   onSubmit() {
     if(this.device.valid){
       console.log(this.device.value)
-      // this.loading = true
-      // this.authService.createUser(this.device.value.username, this.device.value.email, this.device.value.password).subscribe({
-      //   next: (res)=>{
-      //     this.loading = false
-      //     // console.log(res)
+      this.loading = true
+      let msg
+      this._deviceService.createDevice(this.device.value, this.id).subscribe({
+        next: (res) => {
+          msg = "Afegit correctament"
+          console.log(res)
 
-      //     // solucionar problemes actualitzar var ngIf
-      //     this.cdRef.detectChanges();
+          this._snackBar.open(msg, 'X', {
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+            duration: 10 * 1000,
+            panelClass: ['success-snackbar']
+          });
 
-      //     let msg = "Usuari creat correctament"
-
-      //     this.private .open(msg, 'X', {
-      //       horizontalPosition: 'right',
-      //       verticalPosition: 'top',
-      //       duration: 10 * 1000,
-      //       panelClass: ['success-snackbar']
-            
-      //     });
-
-      //     this.tabNum = 0
-
-      //   },
-      //   error: (error)=>{
-      //     let msg = "Hi ha hagut un problema"
-      //     this.loading = false
-      //     console.log(error)
-      //     this.cdRef.detectChanges();
-
-      //     if (error.status == 0){
-      //       msg = "No s'ha pogut connectar amb el servidor"
-      //     }else if (error.status == 401){
-      //       msg = "Aquest email no està disponible"
-      //     }else if (error.status == 500){
-      //       msg = "Problema en crear usuari"
-      //     }
-          
-      //     this.private .open(msg, 'X', {
-      //       horizontalPosition: 'right',
-      //       verticalPosition: 'top',
-      //       duration: 10 * 1000,
-      //       panelClass: ['error-snackbar']
-      //     });
-          
-        // },
-      // })
+          this._router.navigate(["/device/"+this.id]);
+        },
+        error: (error) => { 
+          this.loading = false
+          msg = error.error.message
+          if (error.status == 0){
+            msg = "No s'ha pogut connectar amb el servidor"
+          }
+          this._snackBar.open(msg, 'X', {
+            horizontalPosition: 'right',
+            verticalPosition: 'top',
+            duration: 10 * 1000,
+            panelClass: ['error-snackbar']
+          });
+        }
+      
+      })
     }
 
   }
