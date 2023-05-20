@@ -19,14 +19,16 @@
                 <a mat-list-item [routerLink]="['/place']" [routerLinkActive]="['active']" *ngIf="userIsAuthenticated"  (click)="mobileQuery.matches && snav.toggle()"><mat-icon>place</mat-icon> Ubicacions</a>
                 <a mat-list-item [routerLink]="['/device']" [routerLinkActive]="['active']" *ngIf="userIsAuthenticated"  (click)="mobileQuery.matches && snav.toggle()"><span class="material-symbols-outlined">memory_alt</span> Dispositius</a>
 
-                <mat-expansion-panel>
+                <mat-expansion-panel *ngIf="userIsAuthenticated">
                     <mat-expansion-panel-header>
-                      Header
+                        <span><mat-icon>view_list</mat-icon>Registres dels dispositius</span>
                     </mat-expansion-panel-header>
                 
-                <a mat-list-item routerLink>Item 1</a>
-                <a mat-list-item routerLink>Item 2</a>
-                <a mat-list-item routerLink>Item 3</a>
+                    <a mat-list-item [routerLink]="['/log/all']" [routerLinkActive]="['active']" (click)="mobileQuery.matches && snav.toggle()"><mat-icon>list_alt</mat-icon>Tots els registres</a>
+                    <a mat-list-item routerLink><mat-icon>format_list_bulleted</mat-icon>Registres dels dispositius</a>
+                    <a mat-list-item routerLink><mat-icon>storage</mat-icon>Registres dels proveïdors</a>
+                    <a mat-list-item routerLink><mat-icon>notes</mat-icon>Registres dels proveïdors</a>
+                    <a mat-list-item routerLink><mat-icon>clear_all</mat-icon>Registres dels proveïdors</a>
                   </mat-expansion-panel>
 
             </mat-nav-list>
