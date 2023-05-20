@@ -25,11 +25,11 @@ export class LogService{
 
 
 
-  getDeviceLogs(id:string): Observable<any>{
+  getDeviceLogs(): Observable<any>{
     return this._http.get(this.host+'/api/log/device')
   }
 
-  getProviderLogs(id:string): Observable<any>{
+  getProviderLogs(): Observable<any>{
     return this._http.get(this.host+'/api/log/provider')
   }
 }

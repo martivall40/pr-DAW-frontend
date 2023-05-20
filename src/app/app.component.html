@@ -25,8 +25,8 @@
                     </mat-expansion-panel-header>
                 
                     <a mat-list-item [routerLink]="['/log/all']" [routerLinkActive]="['active']" (click)="mobileQuery.matches && snav.toggle()"><mat-icon>list_alt</mat-icon>Tots els registres</a>
-                    <a mat-list-item routerLink><mat-icon>format_list_bulleted</mat-icon>Registres dels dispositius</a>
-                    <a mat-list-item routerLink><mat-icon>storage</mat-icon>Registres dels proveïdors</a>
+                    <a mat-list-item [routerLink]="['/log/device']" [routerLinkActive]="['active']" (click)="mobileQuery.matches && snav.toggle()"><mat-icon>format_list_bulleted</mat-icon>Registres dels dispositius</a>
+                    <a mat-list-item [routerLink]="['/log/provider']" [routerLinkActive]="['active']" (click)="mobileQuery.matches && snav.toggle()"><mat-icon>storage</mat-icon>Registres dels proveïdors</a>
                     <a mat-list-item routerLink><mat-icon>notes</mat-icon>Registres dels proveïdors</a>
                     <a mat-list-item routerLink><mat-icon>clear_all</mat-icon>Registres dels proveïdors</a>
                   </mat-expansion-panel>

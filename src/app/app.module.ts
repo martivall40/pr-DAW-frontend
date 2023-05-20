@@ -23,6 +23,8 @@ import { AddPlaceComponent } from './components/place/add-place/add-place.compon
 import { DeviceComponent } from './components/device/device.component';
 import { AddDeviceComponent } from './components/device/add-device/add-device.component';
 import { LogAllComponent } from './components/log/log-all/log-all.component';
+import { LogDeviceComponent } from './components/log/log-device/log-device.component';
+import { LogProviderComponent } from './components/log/log-provider/log-provider.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { LogAllComponent } from './components/log/log-all/log-all.component';
     DeviceComponent,
     AddDeviceComponent,
     LogAllComponent,
+    LogDeviceComponent,
+    LogProviderComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,8 @@ import { AddPlaceComponent } from './components/place/add-place/add-place.compon
 import { DeviceComponent } from './components/device/device.component';
 import { AddDeviceComponent } from './components/device/add-device/add-device.component';
 import { LogAllComponent } from './components/log/log-all/log-all.component';
+import { LogDeviceComponent } from './components/log/log-device/log-device.component';
+import { LogProviderComponent } from './components/log/log-provider/log-provider.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,8 @@ const routes: Routes = [
   {path: 'device/:id', component: DeviceComponent, canActivate: [AuthGuard]},
   {path: 'add-device/:id', component: AddDeviceComponent, canActivate: [AuthGuard]},
   {path: 'log/all', component: LogAllComponent, canActivate: [AuthGuard]},
+  {path: 'log/device', component: LogDeviceComponent, canActivate: [AuthGuard]},
+  {path: 'log/provider', component: LogProviderComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
