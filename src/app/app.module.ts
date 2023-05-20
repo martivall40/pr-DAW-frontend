@@ -25,6 +25,7 @@ import { AddDeviceComponent } from './components/device/add-device/add-device.co
 import { LogAllComponent } from './components/log/log-all/log-all.component';
 import { LogDeviceComponent } from './components/log/log-device/log-device.component';
 import { LogProviderComponent } from './components/log/log-provider/log-provider.component';
+import { GraphAllComponent } from './components/graph/graph-all/graph-all.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { LogProviderComponent } from './components/log/log-provider/log-provider
     LogAllComponent,
     LogDeviceComponent,
     LogProviderComponent,
+    GraphAllComponent,
   ],
   imports: [
     BrowserModule,

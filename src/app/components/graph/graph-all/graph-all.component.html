@@ -1,0 +1,41 @@
+<mat-card class="mainCard">
+  <mat-card-header>
+    <div mat-card-avatar *ngIf="!mobileQueryTitle.matches"></div>
+    <mat-card-title>Gràfiques diàries</mat-card-title>
+    <!-- <mat-card-actions align="end">
+      <a mat-raised-button color="primary" [routerLink]="['/add-place']"><mat-icon>add</mat-icon> Afegir Ubicació</a>
+        </mat-card-actions> -->
+  </mat-card-header>
+    <mat-divider></mat-divider>
+  <mat-card-content *ngIf="prices?.length == 0 || loading">
+    <p *ngIf="loading">Carregant dades</p>
+    <p *ngIf="prices?.length == 0 && !loading">No hi han dades per mostrar...</p>
+  </mat-card-content>
+
+</mat-card>
+
+<mat-spinner class="centerM" *ngIf="loading"></mat-spinner>
+<mat-grid-list [cols]="breakpoint"  [rowHeight]="mobileQueryImg.matches ? '300px' : height" gutterSize="15px" (window:resize)="onResize($event)">
+  <mat-grid-tile *ngFor="let price of prices">
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>Preu electricitat tarifa PVPC</mat-card-title>
+        <mat-card-actions class="center">
+          <button mat-button>Veure'n més</button>
+        </mat-card-actions>
+        <mat-card-subtitle *ngIf="price">{{price.date | date:'dd-MM-yyyy'}}</mat-card-subtitle>
+      </mat-card-header>
+        <mat-divider></mat-divider>
+      <mat-card-content class="centerA">
+        
+        <mat-spinner class="centerM" *ngIf="!price"></mat-spinner>
+        <img class="centerM" *ngIf="price" mat-card-image src="{{price.link}}" (click)="openDialog(price.link)" class='graph' alt="Ellectricity graph">
+    
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+    
+</mat-grid-list>
+
+
