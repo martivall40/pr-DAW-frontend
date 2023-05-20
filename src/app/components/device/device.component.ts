@@ -21,7 +21,7 @@ export class DeviceComponent implements OnInit {
   public title:string = ""
   public home:any = null
   // public devices:Array<Devices>=[]
-  public devices:any=[]
+  public devices:Array<any>=[]
   public img:any
   public loading:boolean = true
   private _mobileQueryListener: () => void;
@@ -64,12 +64,15 @@ export class DeviceComponent implements OnInit {
   
     if (target.innerWidth <= 600) {
       this.breakpoint = 1;
-    } else if (target.innerWidth >= 600) {
-      this.breakpoint = 2;
+    } else if (target.innerWidth <= 1400) {
+    this.breakpoint = 2;
+    this.breakpoint = (this.devices.length<=2)?this.devices.length:this.breakpoint
     } else {
-      this.breakpoint = 2;
+      this.breakpoint = 3;
+      this.breakpoint = (this.devices.length<=3)?this.devices.length:this.breakpoint
     }
   
+
   }
 
 
@@ -81,6 +84,8 @@ export class DeviceComponent implements OnInit {
         this.loading = false
         this.devices = res.device
         console.log(this.devices)
+
+        this.onResize()
       },
 
       error: (error) => {
@@ -107,6 +112,9 @@ export class DeviceComponent implements OnInit {
         this.loading = false
         this.devices = res.device
         console.log(this.devices)
+        
+        this.onResize()
+        console.log(this.devices.length)
       },
 
       error: (error) => {
@@ -146,5 +154,39 @@ export class DeviceComponent implements OnInit {
         });
       }    
     })
+  }
+
+  onChange(event:any,device:any):void {
+    let target = event.target
+    let estat = !target.checked
+    target.disabled=true
+
+
+    this._deviceService.swapStatus(device._id).subscribe({
+      next: (res) => {
+        let statusNow = res.deviceType.open
+        target.checked=statusNow
+        target.disabled=false
+        // console.log(res)
+      },
+
+      error: (error) => {
+        console.log(error)
+        target.checked=estat
+        target.disabled=false
+        let msg = error.error.message
+        if (error.status == 0){
+          msg = "No s'ha pogut connectar amb el servidor"
+        }
+        this._snackBar.open(msg, 'X', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 10 * 1000,
+          panelClass: ['error-snackbar']
+        });
+      }    
+    })
+
+
   }
 }

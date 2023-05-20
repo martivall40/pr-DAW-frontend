@@ -18,19 +18,22 @@
 
 <mat-spinner class="centerM" *ngIf="loading"></mat-spinner>
 <mat-grid-list [cols]="breakpoint"  [rowHeight]="mobileQueryImg.matches ? '315px' : '400px'"  gutterSize="15px" (window:resize)="onResize($event)">
-  <mat-grid-tile *ngFor="let device of devices" [routerLink]="['/device']">
+  <mat-grid-tile *ngFor="let device of devices">
     <mat-card class="childCard">
       <mat-card-header>
         <div mat-card-avatar></div>
         <mat-card-title>{{device.name}}</mat-card-title>
         <mat-card-subtitle *ngIf="!home">{{device.home.name}}</mat-card-subtitle>
-        <!-- <mat-card-actions align="end">
-          <button mat-button>Veure'n més</button>
-        </mat-card-actions> -->
+        <mat-card-actions align="end">
+          <label class="switch" *ngIf="device?.typeString=='plug'">
+            <input type="checkbox" (change)="onChange($event,device)" [checked]="device.deviceType.open">
+            <span class="slider round"></span>
+          </label>
+        </mat-card-actions>
       </mat-card-header>
         <mat-divider></mat-divider>
         
-        <mat-card-content class="img"  style="background: url('{{img[device.typeString]}}') no-repeat;background-size: cover;">
+        <mat-card-content [routerLink]="['/device']" class="img"  style="background: url('{{img[device.typeString]}}') no-repeat;background-size: cover;">
         </mat-card-content>
     
     </mat-card>

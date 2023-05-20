@@ -58,4 +58,8 @@ export class DeviceService{
     return this._http.delete(this.host+'/api/device/'+id)
   }
 
+  swapStatus(id:string): Observable<any>{
+    return this._http.get(this.host+'/api/device/swapStatus/'+id)
+  }
+
 }
