@@ -22,11 +22,14 @@
         <mat-select formControlName="typeString">
           <mat-option>None</mat-option>
           <mat-option value="Plug"><mat-icon>power</mat-icon>Endoll</mat-option>      
+          <mat-option value="Light"><mat-icon>lightbulb</mat-icon>Làmpara</mat-option>      
+          <mat-option value="ESP32"><mat-icon>memory</mat-icon>ESP32</mat-option>      
           
         </mat-select>
         <mat-error *ngIf="device.controls.typeString.errors?.['required']">Afageix el tipus</mat-error>
       </mat-form-field>
       
+      <div *ngIf="device.value.typeString == 'Plug'||device.value.typeString == 'Light'">
       <mat-divider></mat-divider>
       <h3 class="divider2">Actuació</h3>
       
@@ -57,8 +60,10 @@
       formControlName="key">
       <!-- <mat-error *ngIf="device.controls.name.errors?.['required']">Nom obligatori</mat-error> -->
       <mat-icon matSuffix>key</mat-icon>
+
     </mat-form-field>
     
+    </div>
     
     <button
     mat-raised-button

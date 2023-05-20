@@ -40,6 +40,8 @@ export class DeviceComponent implements OnInit {
 
     this.img = {
       plug: '../../../assets/img/device/plug.jpg',
+      light: '../../../assets/img/device/light2.jpg',
+      esp32: '../../../assets/img/device/esp32.jpg',
     }
 
     this._route.params.subscribe(params=>{
