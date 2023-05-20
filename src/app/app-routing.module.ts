@@ -13,6 +13,7 @@ import { LogAllComponent } from './components/log/log-all/log-all.component';
 import { LogDeviceComponent } from './components/log/log-device/log-device.component';
 import { LogProviderComponent } from './components/log/log-provider/log-provider.component';
 import { GraphAllComponent } from './components/graph/graph-all/graph-all.component';
+import { GraphAverageComponent } from './components/graph/graph-average/graph-average.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'log/device', component: LogDeviceComponent, canActivate: [AuthGuard]},
   {path: 'log/provider', component: LogProviderComponent, canActivate: [AuthGuard]},
   {path: 'graph/all', component: GraphAllComponent, canActivate: [AuthGuard]},
+  {path: 'graph/average', component: GraphAverageComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

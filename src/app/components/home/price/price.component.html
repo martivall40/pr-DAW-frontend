@@ -2,8 +2,8 @@
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>Preu electricitat tarifa PVPC</mat-card-title>
-    <mat-card-actions class="center">
-      <button mat-button>Veure'n més</button>
+    <mat-card-actions align="end">
+      <a mat-raised-button color="primary" [routerLink]="['/graph/all']"><mat-icon>bar_chart</mat-icon> Veure'n més</a>
     </mat-card-actions>
     <mat-card-subtitle *ngIf="price">{{price.date | date:'dd-MM-yyyy'}}</mat-card-subtitle>
   </mat-card-header>

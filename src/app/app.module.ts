@@ -26,6 +26,10 @@ import { LogAllComponent } from './components/log/log-all/log-all.component';
 import { LogDeviceComponent } from './components/log/log-device/log-device.component';
 import { LogProviderComponent } from './components/log/log-provider/log-provider.component';
 import { GraphAllComponent } from './components/graph/graph-all/graph-all.component';
+import { GraphAverageComponent } from './components/graph/graph-average/graph-average.component';
+
+import * as CanvasJSAngularChart from '../assets/canvasjs/canvasjs-chart-3.7.7/canvasjs.angular.component';
+var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 @NgModule({
   declarations: [
@@ -42,6 +46,8 @@ import { GraphAllComponent } from './components/graph/graph-all/graph-all.compon
     LogDeviceComponent,
     LogProviderComponent,
     GraphAllComponent,
+    GraphAverageComponent,
+    CanvasJSChart,
   ],
   imports: [
     BrowserModule,
