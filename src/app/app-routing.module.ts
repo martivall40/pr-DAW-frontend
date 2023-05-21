@@ -7,6 +7,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { PlaceComponent } from './components/place/place.component';
 import { AddPlaceComponent } from './components/place/add-place/add-place.component';
+import { ConfigPlaceComponent } from './components/place/config-place/config-place.component';
 import { DeviceComponent } from './components/device/device.component';
 import { AddDeviceComponent } from './components/device/add-device/add-device.component';
 import { LogAllComponent } from './components/log/log-all/log-all.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'place', component: PlaceComponent, canActivate: [AuthGuard]},
   {path: 'add-place', component: AddPlaceComponent, canActivate: [AuthGuard]},
+  {path: 'config-place/:id', component: ConfigPlaceComponent, canActivate: [AuthGuard]},
   {path: 'device', component: DeviceComponent, canActivate: [AuthGuard]},
   {path: 'device/:id', component: DeviceComponent, canActivate: [AuthGuard]},
   {path: 'add-device/:id', component: AddDeviceComponent, canActivate: [AuthGuard]},

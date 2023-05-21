@@ -22,6 +22,9 @@ mat-card-header{
 
 mat-card-actions{
   width:100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row-reverse;
 }
 
 mat-grid-list{

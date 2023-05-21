@@ -1,0 +1,52 @@
+<mat-card class="card">
+  <mat-card-header>
+    <!-- <div mat-card-avatar><a mat-button><mat-icon>keyboard_arrow_left</mat-icon></a></div> -->
+    <mat-card-title>
+      <a [routerLink]="['/device/'+id]" mat-icon-button class="icon-button-large"><mat-icon>keyboard_arrow_left</mat-icon></a><span [innerHTML]="title"></span>
+    </mat-card-title>
+
+    <mat-card-actions align="end">
+      <a (click)="onDelete()" mat-raised-button color="warn"><mat-icon>home</mat-icon> Eliminar</a>
+    </mat-card-actions>
+    
+  </mat-card-header>
+    <mat-divider></mat-divider>
+  <mat-card-content>
+      <mat-spinner class="centerM" *ngIf="loading"></mat-spinner>
+      <form *ngIf="!loading"  [formGroup]="place" (submit)="onSubmit()">
+      <mat-form-field>
+      <mat-label>Nom</mat-label>
+      <input
+          matInput
+          formControlName="name">
+          <mat-error *ngIf="place.controls.name.errors?.['required']">Nom obligatori</mat-error>
+        <mat-icon matSuffix>place</mat-icon>
+      </mat-form-field>
+      <mat-form-field>
+      <mat-label>Tipus</mat-label>
+      <mat-select formControlName="type">
+          <mat-option>None</mat-option>
+          <mat-option value="Home"><mat-icon>house</mat-icon>Casa</mat-option>      
+          <mat-option value="Bedroom"><mat-icon>bed</mat-icon>Dormitori
+          </mat-option>      
+          <mat-option value="Room"><mat-icon>chair</mat-icon>Habitació</mat-option>      
+          <mat-option value="Kitchen"><mat-icon>kitchen</mat-icon>Cuina</mat-option>      
+          <mat-option value="Roof"><mat-icon>roofing</mat-icon>Teulada</mat-option>      
+          <mat-option value="Garden"><mat-icon>deck</mat-icon>Jardí</mat-option><!-- grass -->   
+          <mat-option value="Garage"><mat-icon>warehouse</mat-icon>Garatge</mat-option>      
+        </mat-select>
+        <mat-error *ngIf="place.controls.type.errors?.['required']">Afageix el tipus</mat-error>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        class="submit-button"
+        [disabled]="!place.valid || loading">
+        Afegir
+      </button>
+
+
+    </form>
+  </mat-card-content>
+
+</mat-card>

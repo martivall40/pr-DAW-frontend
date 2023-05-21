@@ -2,8 +2,9 @@
   <mat-card-header>
     <div mat-card-avatar *ngIf="!mobileQueryTitle.matches"></div>
     <mat-card-title [innerHtml]="title"></mat-card-title>
-    <mat-card-actions align="end">
+    <mat-card-actions>
       <a *ngIf="home" mat-raised-button color="primary" [routerLink]="['/add-device/'+home._id]"><mat-icon>add</mat-icon> Afegir dispositiu</a>
+      <a  *ngIf="home" mat-raised-button color="accent" [routerLink]="['/config-place/'+home._id]"><mat-icon>settings</mat-icon>Configuració</a>
       <a *ngIf="!home" mat-raised-button color="warn" [routerLink]="['/place']"><mat-icon>place</mat-icon> Ubicacions</a>
         </mat-card-actions>
   </mat-card-header>

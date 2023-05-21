@@ -29,6 +29,7 @@ import { GraphAllComponent } from './components/graph/graph-all/graph-all.compon
 import { GraphAverageComponent } from './components/graph/graph-average/graph-average.component';
 
 import * as CanvasJSAngularChart from '../assets/canvasjs/canvasjs-chart-3.7.7/canvasjs.angular.component';
+import { ConfigPlaceComponent } from './components/place/config-place/config-place.component';
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 @NgModule({
@@ -48,6 +49,7 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     GraphAllComponent,
     GraphAverageComponent,
     CanvasJSChart,
+    ConfigPlaceComponent,
   ],
   imports: [
     BrowserModule,

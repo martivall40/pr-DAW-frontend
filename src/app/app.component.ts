@@ -23,7 +23,7 @@ export class AppComponent implements OnInit,OnDestroy  {
 
   constructor(private authService: AuthService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     // nav responsive
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = media.matchMedia('(max-width: 870px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
