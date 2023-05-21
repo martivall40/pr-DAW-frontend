@@ -25,6 +25,8 @@
         <div mat-card-avatar></div>
         <mat-card-title>{{device.name}}</mat-card-title>
         <mat-card-subtitle *ngIf="!home">{{device.home.name}}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="device.providerString != ''">{{device.providerString}} | {{(device.real)?'Real':'No real'}}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="device.real">Real</mat-card-subtitle>
         <mat-card-actions align="end">
           <label class="switch" *ngIf="device?.typeString=='plug'||device?.typeString=='light'">
             <input type="checkbox" (change)="onChange($event,device)" [checked]="device.deviceType.open">
@@ -34,7 +36,7 @@
       </mat-card-header>
         <mat-divider></mat-divider>
         
-        <mat-card-content [routerLink]="['/device']" class="img"  style="background: url('{{img[device.typeString]}}') no-repeat;background-size: cover;">
+        <mat-card-content [routerLink]="['/device/'+device.home._id]" class="img"  style="background: url('{{img[device.typeString]}}') no-repeat;background-size: cover;">
         </mat-card-content>
     
     </mat-card>
