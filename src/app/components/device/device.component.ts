@@ -166,10 +166,10 @@ export class DeviceComponent implements OnInit {
 
     this._deviceService.swapStatus(device._id).subscribe({
       next: (res) => {
+        console.log(res)
         let statusNow = res.deviceType.open
         target.checked=statusNow
         target.disabled=false
-        // console.log(res)
       },
 
       error: (error) => {

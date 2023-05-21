@@ -38,6 +38,7 @@ export class AddDeviceComponent implements OnInit {
       ]),
       real: new FormControl(false),
       providerString: new FormControl(''),
+      id: new FormControl(''),
       key: new FormControl(''),
     });
 

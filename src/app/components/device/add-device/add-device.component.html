@@ -54,6 +54,16 @@
     
     
     <mat-form-field *ngIf="provider == 'tuya'">
+      <mat-label>id</mat-label>
+      <input
+      matInput
+      formControlName="id">
+      <!-- <mat-error *ngIf="device.controls.name.errors?.['required']">Nom obligatori</mat-error> -->
+      <mat-icon matSuffix>id</mat-icon>
+
+    </mat-form-field>
+
+    <mat-form-field *ngIf="provider == 'tuya'">
       <mat-label>Key</mat-label>
       <input
       matInput
